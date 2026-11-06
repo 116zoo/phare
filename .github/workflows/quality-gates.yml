@@ -7,6 +7,8 @@ on:
   push:
     branches: [main]
 
+# All jobs run on ubuntu-24.04: `ubuntu-latest` now resolves to 26.04, which Playwright
+# does not support yet ("does not support chromium on ubuntu26.04-x64").
 env:
   # CI-safe defaults (real values should be set in GitHub Secrets for production deploys)
   POSTGRES_URL: ${{ secrets.POSTGRES_URL || 'postgresql://postgres:postgres@localhost:5432/payload' }}
@@ -19,7 +21,7 @@ env:
 
 jobs:
   lint-and-typecheck:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       # The runners no longer ship pnpm, and `setup-node` fails with
@@ -43,7 +45,7 @@ jobs:
         run: pnpm exec tsc --noEmit
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
@@ -86,7 +88,7 @@ jobs:
           POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/payload
 
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
@@ -155,7 +157,7 @@ jobs:
   # `needs:`-ing a dev-server job on a different machine, where localhost:3000
   # would not exist.
   frontend-quality:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     services:
       postgres:
         image: postgres:16
