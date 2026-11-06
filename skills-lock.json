@@ -1,0 +1,455 @@
+{
+  "version": 1,
+  "skills": {
+    "ad-manager": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/ad-manager/SKILL.md",
+      "computedHash": "ab7be68a15b2b3ee79c759ffbffc3f25784524c3703a07d88482dc41ab0cc03e"
+    },
+    "aides-et-marches-fr": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/aides-et-marches-fr/SKILL.md",
+      "computedHash": "f2bb5d0d0cf657e9e92a5d85f583c634c1547ff4f7ce290a166511614752fad3"
+    },
+    "ap-processor": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/ap-processor/SKILL.md",
+      "computedHash": "88af83330a6ed04d87509f35bcacc73ce05e875fb12a371963e7d6a29b744c6e"
+    },
+    "b2b-stock-planner": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/b2b-stock-planner/SKILL.md",
+      "computedHash": "ab724c5979586ad1b78e8b2d9ba105d1fa5160c04ad53323895aa0bc68cced34"
+    },
+    "brand-style": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/brand-style/SKILL.md",
+      "computedHash": "d98bc32448b9253899a8669d5e168e3c5f5644b69ea5e219fa68ff123a7bb21f"
+    },
+    "build-agent": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/build-agent/SKILL.md",
+      "computedHash": "281774624215c3fb4739d19e449f4d7d6d4bf32e113ad93e37257b1dda06ff37"
+    },
+    "build-connector": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/build-connector/SKILL.md",
+      "computedHash": "cf833334d6095459e3627a7c8b97b39effe85b01e1976dac8616028e6fb370e9"
+    },
+    "business-pulse": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/business-pulse/SKILL.md",
+      "computedHash": "323d5cd0f2def4341bc5150946f4db7148661c66d08e7cf2970e764226891716"
+    },
+    "calendrier-fiscal-fr": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/calendrier-fiscal-fr/SKILL.md",
+      "computedHash": "4d89cb885c4e2c627ef9053c2055d8229c3a4dd0f01b6ef29a7f142357244a24"
+    },
+    "call-list": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/call-list/SKILL.md",
+      "computedHash": "e31a451fd9f8286716ba326d514e206a15d5a62c76058ee362a282a46aa17396"
+    },
+    "canva-creator": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/canva-creator/SKILL.md",
+      "computedHash": "676faff917b5fad207366a6666ef709bbd8c9961f1b7e31a751b9a11925f7e21"
+    },
+    "cash-flow-snapshot": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/cash-flow-snapshot/SKILL.md",
+      "computedHash": "610b3ed0e9a4374669c230282db8582df19ce6152b89f382b9411b00ca1794ce"
+    },
+    "catalog-quote": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/catalog-quote/SKILL.md",
+      "computedHash": "d97fe325db99292aaba61db9966add32c2836eaad2d3bce29b1049c6d92a530b"
+    },
+    "close-month": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/close-month/SKILL.md",
+      "computedHash": "568ff2e404374687b67fa73ee3009d9324a2e9def830aa6b0aa290a220877b06"
+    },
+    "content-strategy": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/content-strategy/SKILL.md",
+      "computedHash": "8d72c841b03f281f494561f416fcd922d4a4a3f2416c5ff3ff8a28434455df87"
+    },
+    "contract-review": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/contract-review/SKILL.md",
+      "computedHash": "c28b39fcfc0acac4ac111fe84e30b4ccc2360e38dd8b7a639cf44437958e38cd"
+    },
+    "credit-desk": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/credit-desk/SKILL.md",
+      "computedHash": "d9da885b4e80df3eb03ac0a4cbfe2a5fd35199e7cd02b9dccc8b8d7f6023bb37"
+    },
+    "crm-autopilot": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/crm-autopilot/SKILL.md",
+      "computedHash": "f385a2eed439d840ce5327903780d5435be5accc8b896262329f9073b5d0bfe2"
+    },
+    "customer-reorder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/customer-reorder/SKILL.md",
+      "computedHash": "3f4c604eae868ebceb8f71287437b07e545540bfea65a64312a3e178789e6ed6"
+    },
+    "devis-facture-fr": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/devis-facture-fr/SKILL.md",
+      "computedHash": "ff08e7cad3f5b6f7e1086bbc28e4937c6eda41535e35f49c0bef1549dc961f96"
+    },
+    "dolibarr-development": {
+      "source": "jeffsenso/dolibarr-skills",
+      "sourceType": "github",
+      "skillPath": "skills/dolibarr-development/SKILL.md",
+      "computedHash": "873b4d928f139cc816db5652c64b6f1d8fbb042555d2b815f273175e2e6f4a11"
+    },
+    "dossier-expert-comptable": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/dossier-expert-comptable/SKILL.md",
+      "computedHash": "c2a401cee3cd1e2052c9fe960e2568abf7b50955be4cebcc22805f466bf5a79e"
+    },
+    "einvoice-readiness": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/einvoice-readiness/SKILL.md",
+      "computedHash": "279c2c7950529885b8b58f98f308a92fa14a4731a66f57db6452c364fec12aa5"
+    },
+    "fulfillment-desk": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/fulfillment-desk/SKILL.md",
+      "computedHash": "1838ff053cebdae96c9d1f458bb5e54f61d407ed843746e7b358b72bf7987958"
+    },
+    "grow-pipeline": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/grow-pipeline/SKILL.md",
+      "computedHash": "81e2d15544dbbd9263be69948641b7ba7b9465d6044fa3309ccd8b61411fb6f2"
+    },
+    "growth-pulse": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/growth-pulse/SKILL.md",
+      "computedHash": "1a20f6db308e65ca3f9f58a2f77ff7a8a130bc9854cce8a4533c42ba31668adc"
+    },
+    "hiring-screener": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/hiring-screener/SKILL.md",
+      "computedHash": "1b7e886a0cf43ce1f2325b2e4b339633e90a4215d4cbacc962598ebf0ca3ce48"
+    },
+    "inbox-manager": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/inbox-manager/SKILL.md",
+      "computedHash": "bf7074a93ed285dc642d0101673504ad9bc031cd03c1aa1653d6a21b50450fb8"
+    },
+    "intra-eu-export-check": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/intra-eu-export-check/SKILL.md",
+      "computedHash": "4d5ebac129b179898eb1bc4145c73c6769c5d52e8acb014d549914aa7bce57d1"
+    },
+    "inventory-planner": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/inventory-planner/SKILL.md",
+      "computedHash": "9ce9265ef82a4f4f3f9b7ff727bba550fcf9263a8548f5d580d8f42e0d253393"
+    },
+    "invoice-chase": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/invoice-chase/SKILL.md",
+      "computedHash": "9e593b5f05778497ffb1d19b5434725429416935beee6990ea86eef72f9501c4"
+    },
+    "job-post-builder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/job-post-builder/SKILL.md",
+      "computedHash": "ca64a569bbd96f48efdb680c2231479662a667aa60d7a4bc88884c5eea4e3d89"
+    },
+    "lead-finder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/lead-finder/SKILL.md",
+      "computedHash": "477332f1d8bb54245a7108c1bed7c370d4a3a074e5f1076545a5c2558a5c8ae9"
+    },
+    "lead-triage": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/lead-triage/SKILL.md",
+      "computedHash": "422be10298cb1019c9875d762399b486900e3f9e8b34b2fc6bd952d6f4c8f6e0"
+    },
+    "marketing-monday": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/marketing-monday/SKILL.md",
+      "computedHash": "835082b72ea71c5dd131f8c091a282201d93c534fc4b1b507f1855794b08f674"
+    },
+    "micro-entrepreneur": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/micro-entrepreneur/SKILL.md",
+      "computedHash": "49b3a4cf4d5a9f305b90d2012846eb5b27fd18a1781d3cecc95e3c3a70fc4711"
+    },
+    "monday-brief": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/monday-brief/SKILL.md",
+      "computedHash": "3d91712fc5245f2756df1e68daf513050e66208e5dbff188262136f7c2d8458d"
+    },
+    "month-end-prep": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/month-end-prep/SKILL.md",
+      "computedHash": "74643508b7cd8f9381de3d820d9f961b635793e760ef8e7e43d31b5f7f4adfb5"
+    },
+    "order-intake": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/order-intake/SKILL.md",
+      "computedHash": "7d837586404cde5634ed8cd424613422680663f4c0dc1b8b0dd7e0b62ab038b0"
+    },
+    "outreach-composer": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/outreach-composer/SKILL.md",
+      "computedHash": "8c5a602270475bc4f1483cc140d63854a908eb0a425ddc42d4170b51a4bf2345"
+    },
+    "pay-the-bills": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/pay-the-bills/SKILL.md",
+      "computedHash": "bb4ef7e9f44bc50c3394886544691a2c154e2c3c7eff75d729a38932d8441840"
+    },
+    "payroll-prep": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/payroll-prep/SKILL.md",
+      "computedHash": "65cee11f3b1bc03adf409dcce7ac8a75d861f861b34d1c41f90a00575b47ad6d"
+    },
+    "pricing-desk": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/pricing-desk/SKILL.md",
+      "computedHash": "b3cab923e4d3a433d1d37510aedc49291d93c5cda7d9d048c6bf10cebcc4778f"
+    },
+    "product-compliance": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/product-compliance/SKILL.md",
+      "computedHash": "deb3bfbb886cf8677661edebbee7a5e41382a322be7896c213d23f3a2a16a060"
+    },
+    "proposal-builder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/proposal-builder/SKILL.md",
+      "computedHash": "ec62139093a0c7415795ab679549dea4bfe4a587141ba8a1cbd39898be31241f"
+    },
+    "purchase-desk": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/purchase-desk/SKILL.md",
+      "computedHash": "0f865d9f72fa3198cd3b5db8121a07095f95b8a8afa5d78ecb20bfc369e1b147"
+    },
+    "quote-followup": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/quote-followup/SKILL.md",
+      "computedHash": "edd02fd6d451fd6a267f6adff977c07b4043f0625e3bb7f3d7d355e4bc5d1a04"
+    },
+    "reactivate": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/reactivate/SKILL.md",
+      "computedHash": "e15a6d7cfb4c5cd300889881dcc279eb4f9293855847c7e55ce489c64fcb88b1"
+    },
+    "renewal-watch": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/renewal-watch/SKILL.md",
+      "computedHash": "53a54a62e9e57e7538ec8352569844567d6585cdf2196beb675d7123bdf15349"
+    },
+    "report-builder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/report-builder/SKILL.md",
+      "computedHash": "cbf33511089baf60b9a73c71c03b538cb7bcad96bf8181af6258a1d2d47f5040"
+    },
+    "report-pack": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/report-pack/SKILL.md",
+      "computedHash": "230cb9504982bb5969fe4e3e39a630b40a1f813b6d37000551c0e63286cac818"
+    },
+    "restock": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/restock/SKILL.md",
+      "computedHash": "6f4078c2b48680bfb5605ded416e52d7aadef98b4a05bb076b43c97f2e3c838b"
+    },
+    "review-reputation": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/review-reputation/SKILL.md",
+      "computedHash": "6aea8e5c275c319f9d2b14bb91ad1398680128040492e82f315a27e9d1dbdf2a"
+    },
+    "seo-ai-visibility": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/seo-ai-visibility/SKILL.md",
+      "computedHash": "1d2fadd236c44e7fab2cbae613c23d77075b375917d6b8dc14085b4deea3e047"
+    },
+    "shopify-builder": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-builder/SKILL.md",
+      "computedHash": "0508bf9358f97c2b7c367a78cd2fd5856511f5eb713d46ad292ae6ada633a0d0"
+    },
+    "shopify-catalog": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-catalog/SKILL.md",
+      "computedHash": "21c0305e617c1a11dfa492308e9e65b20b98eb924fb4b254f5517eddc9bd85b2"
+    },
+    "shopify-customers": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-customers/SKILL.md",
+      "computedHash": "d39fa4f9cc28c604d241ef8683ceeee469b0f432080c09cd8cf46ba9b23ed2d0"
+    },
+    "shopify-hub": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-hub/SKILL.md",
+      "computedHash": "b0e1b7ddfc528b2816870be5856d3dbf4d960e6ec320091f0eb53397166be922"
+    },
+    "shopify-inventory": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-inventory/SKILL.md",
+      "computedHash": "3e8f9d1f30c6436be077ae9d123bb83bac5d44dda1463a6bef0a23d2fcd5f1a8"
+    },
+    "shopify-marketing": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-marketing/SKILL.md",
+      "computedHash": "a9c5571d21195d4a99d9bf525f1ade3b3167c7f0ca9c3c8d9f34427a4f9bddd0"
+    },
+    "shopify-orders": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-orders/SKILL.md",
+      "computedHash": "eb71a9d43b1a12bf3cb5834226fe59cf8056515072f6ff4f7f067bfbbc26f7af"
+    },
+    "shopify-reporting": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-reporting/SKILL.md",
+      "computedHash": "8f86e39b64aeddea9b93c55d1926c1b7412cbb58aeef75817445c8d5145c7bf1"
+    },
+    "shopify-setup": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/shopify-setup/SKILL.md",
+      "computedHash": "759266a70807028dafad56f3f1653b2212e65a0df959350a6ca8911fca0aeb7a"
+    },
+    "smb-onboard": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/smb-onboard/SKILL.md",
+      "computedHash": "915f2600de915208aaefd81c303e80ffb757e4a4f102f11b17a5f39543bfcd52"
+    },
+    "smb-router": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/smb-router/SKILL.md",
+      "computedHash": "9d67482ca43d0d520b77a1027424accf26eca898e422edc1ef2d4c4a776c886c"
+    },
+    "social-content-engine": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/social-content-engine/SKILL.md",
+      "computedHash": "596b2dbcbd2567640d2c793971613435c207a3a10d474a14ffe32a51f640c760"
+    },
+    "speed-to-lead": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/speed-to-lead/SKILL.md",
+      "computedHash": "b373b44e507140b5598129179b06b6685613b696b46025dce7bc0321272e9623"
+    },
+    "stock-count-cutoff": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/stock-count-cutoff/SKILL.md",
+      "computedHash": "b5c9c3bdc89e559fd1a458e475c521a8739bdf7ff169f3912c1932990878cdef"
+    },
+    "tax-prep": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/tax-prep/SKILL.md",
+      "computedHash": "2d243239a37857416796bb99e0cab8799d8b74117e860b327378cc440be7d9ef"
+    },
+    "ticket-deflector": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/ticket-deflector/SKILL.md",
+      "computedHash": "5cc7d5ad17ff62219c8ad2c53905f388f44a52bb5a5bb5fcac3333ecd8c04dac"
+    },
+    "time-to-invoice": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/time-to-invoice/SKILL.md",
+      "computedHash": "071468d113349c224bacbec84e5a39e8007c8401aa00851342e337809292a43f"
+    },
+    "tva-pilot": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/tva-pilot/SKILL.md",
+      "computedHash": "1ec020d20c9203eccbecb8f83e0b0c20b6f5cee1cc598bc5455a21cbc3087adb"
+    },
+    "verifier-tiers": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/verifier-tiers/SKILL.md",
+      "computedHash": "3f0c1d6e85dba8ad99fc8705cc3ca48076f9d6ad3203809771233dd9958dd287"
+    },
+    "visit-report": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/visit-report/SKILL.md",
+      "computedHash": "3327ceb8d22865856ef4ff54765167a9b93c7d70869fb4fe038f502384d1fa8e"
+    },
+    "working-capital": {
+      "source": "jamon8888/small-business-fr",
+      "sourceType": "github",
+      "skillPath": "plugins/small-business-fr/skills/working-capital/SKILL.md",
+      "computedHash": "924844fb7c2057450577683415e2b699afdc064706b23cf018af853625699ef1"
+    }
+  }
+}

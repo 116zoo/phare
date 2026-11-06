@@ -1,5 +1,13 @@
 {
   "mcpServers": {
+    "Dolibarr": {
+      "command": "node",
+      "args": ["/home/ropie/mcp-dolibarr/build/index.js"],
+      "env": {
+        "DOLIBARR_URL": "${DOLIBARR_URL}",
+        "DOLIBARR_API_KEY": "${DOLIBARR_API_KEY}"
+      }
+    },
     "Payload": {
       "type": "http",
       "url": "http://127.0.0.1:3000/api/mcp",
