@@ -8,8 +8,8 @@ export async function getRedirects(locale: Locale, depth = 1) {
 
   const { docs: redirects } = await payload.find({
     collection: 'redirects',
-    locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr' | 'all',
+    fallbackLocale: 'fr',
     depth,
     limit: 0,
     pagination: false,

@@ -21,9 +21,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { locales, defaultLocale } from './i18n/config'
 import { mcp } from './mcp'
 import { en } from '@payloadcms/translations/languages/en'
-import { de } from '@payloadcms/translations/languages/de'
 import { fr } from '@payloadcms/translations/languages/fr'
-import { es } from '@payloadcms/translations/languages/es'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,6 +35,9 @@ export default buildConfig({
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       beforeDashboard: ['@/components/BeforeDashboard'],
+      graphics: {
+        Logo: '@/components/AdminLogo',
+      },
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -91,12 +92,12 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   localization: {
-    locales,
+    locales: [...locales],
     defaultLocale,
     fallback: true,
   },
   i18n: {
-    supportedLanguages: { en, de, fr, es },
+    supportedLanguages: { en, fr },
     fallbackLanguage: defaultLocale,
   },
   experimental: {

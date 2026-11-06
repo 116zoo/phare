@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { getDictionary } from '@/i18n/dictionary'
 import { Locale, defaultLocale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 interface NotFoundProps {
   params: Promise<{ locale: Locale }>
@@ -22,7 +23,7 @@ export default async function NotFound({ params }: NotFoundProps) {
         <p className="mb-4">{dict.notFound.description}</p>
       </div>
       <Button asChild variant="default">
-        <Link href={`/${locale === 'en' ? '' : locale}`}>{dict.notFound.goHome}</Link>
+        <Link href={localizedHref(locale)}>{dict.notFound.goHome}</Link>
       </Button>
     </div>
   )

@@ -1,0 +1,208 @@
+.page {
+  --ink: #171717;
+  --acid: #d8f24e;
+  background: #fff;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.hero {
+  padding: clamp(4rem, 9vw, 8.5rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(5rem, 9vw, 9rem);
+}
+
+.meta,
+.cardTop,
+.sectionHead,
+.source {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.8rem;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.65fr);
+  align-items: end;
+  gap: clamp(3rem, 10vw, 10rem);
+  margin-top: clamp(5rem, 11vw, 10rem);
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  color: rgb(23 23 23 / 60%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 65rem;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(4.5rem, 13vw, 12rem);
+  font-weight: 400;
+  letter-spacing: -0.1em;
+  line-height: 0.76;
+  text-transform: uppercase;
+}
+
+.hero h1 em {
+  display: block;
+  margin-left: clamp(2rem, 13vw, 14rem);
+  font-size: 0.36em;
+  font-style: italic;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.intro {
+  max-width: 21rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.articles {
+  padding: clamp(4rem, 8vw, 8rem) max(1.25rem, calc((100vw - 84rem) / 2));
+  background: var(--ink);
+  color: #fff;
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(255 255 255 / 55%);
+}
+
+.sectionHead h2 {
+  margin: 0;
+  color: var(--acid);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.sectionHead span:last-child { text-align: right; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  border-top: 1px solid rgb(255 255 255 / 24%);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-height: 30rem;
+  flex-direction: column;
+  border-bottom: 1px solid rgb(255 255 255 / 24%);
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  background: #202020;
+  transition: background 250ms ease, color 250ms ease;
+}
+
+.card:nth-child(odd) { border-right: 1px solid rgb(255 255 255 / 24%); }
+.card:hover { background: var(--acid); color: var(--ink); }
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--acid);
+}
+
+.card:hover .cardTop { color: rgb(23 23 23 / 62%); }
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 35rem;
+  padding: 3rem 0;
+}
+
+.number {
+  margin-bottom: 1.4rem;
+  color: rgb(255 255 255 / 35%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+}
+
+.card:hover .number { color: rgb(23 23 23 / 45%); }
+
+.card h3 {
+  max-width: 30rem;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.92;
+}
+
+.card p {
+  max-width: 31rem;
+  margin: 2rem 0 0;
+  color: rgb(255 255 255 / 70%);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.card:hover p { color: rgb(23 23 23 / 72%); }
+
+.card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--acid);
+  padding-bottom: 0.3rem;
+  color: #fff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.card:hover a { border-color: var(--ink); color: var(--ink); }
+
+.source {
+  align-self: flex-end;
+  color: rgb(255 255 255 / 42%);
+}
+
+.card:hover .source { color: rgb(23 23 23 / 55%); }
+
+.featured { background: #2a2a2a; }
+
+@media (max-width: 700px) {
+  .meta { gap: 1rem; font-size: 0.58rem; }
+  .meta span:last-child { text-align: right; }
+  .heroGrid { grid-template-columns: 1fr; gap: 4rem; }
+  .intro { max-width: 25rem; }
+  .sectionHead { grid-template-columns: 1fr auto; }
+  .sectionHead span:last-child { display: none; }
+  .grid { grid-template-columns: 1fr; }
+  .card,
+  .card:nth-child(odd) { min-height: 27rem; border-right: 0; }
+}

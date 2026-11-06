@@ -10,6 +10,7 @@ import { CardPostData } from '@/components/Card'
 import { getDictionary } from '@/i18n/dictionary'
 import { Locale } from '@/i18n/config'
 import { getServerSideURL } from '@/utilities/getURL'
+import { localizedHref } from '@/i18n/path'
 
 type Args = {
   params: Promise<{ locale: Locale }>
@@ -27,8 +28,8 @@ export default async function Page({ params, searchParams: searchParamsPromise }
 
   const posts = await payload.find({
     collection: 'search',
-    locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr' | 'all',
+    fallbackLocale: 'fr',
     depth: 1,
     limit: 12,
     select: {
@@ -98,7 +99,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   return {
     title: dict.search.title,
     alternates: {
-      canonical: `${getServerSideURL()}${locale === 'en' ? '' : `/${locale}`}/search`,
+      canonical: `${getServerSideURL()}${localizedHref(locale, 'search')}`,
     },
   }
 }

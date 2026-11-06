@@ -13,6 +13,7 @@ import { homeStatic } from '@/endpoints/seed/home-static'
 import { localizedHref } from '@/i18n/path'
 import { locales, type Locale } from '@/i18n/config'
 import { queryPageBySlug } from '@/utilities/queries'
+import { PresentationPage } from '@/components/PresentationPage'
 
 /**
  * The public page is rendered statically and revalidated on demand:
@@ -84,6 +85,10 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   if (!page) {
     return <PayloadRedirects locale={locale} url={url} />
+  }
+
+  if (decodedSlug === 'lequipe') {
+    return <PresentationPage locale={locale} />
   }
 
   return <PageView locale={locale} page={page} slug={decodedSlug} />

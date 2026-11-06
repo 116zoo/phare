@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cn } from '@/utilities/ui'
 import type { Page, Post } from '@/payload-types'
 import { Locale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 import { useTranslations } from 'next-intl'
 
 type CMSLinkType = {
@@ -36,28 +37,29 @@ export const AccessibleLink: React.FC<CMSLinkType> = (props) => {
   } = props
 
   const t = useTranslations('a11y')
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
-
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${localePrefix}${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`
+      ? localizedHref(
+          locale,
+          `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`,
+        )
       : url
 
   if (!href) return null
 
-  const newTabProps = newTab
-    ? { rel: 'noopener noreferrer', target: '_blank' as const }
-    : {}
+  const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' as const } : {}
 
   // Inline link (from richText)
   if (appearance === 'inline') {
     return (
-      <Link className={cn('underline-offset-4 hover:underline', className)} href={href} {...newTabProps}>
+      <Link
+        className={cn('underline-offset-4 hover:underline', className)}
+        href={href}
+        {...newTabProps}
+      >
         {label}
         {children}
-        {newTab && (
-          <span className="sr-only"> {t('newWindow')}</span>
-        )}
+        {newTab && <span className="sr-only"> {t('newWindow')}</span>}
       </Link>
     )
   }
@@ -66,7 +68,8 @@ export const AccessibleLink: React.FC<CMSLinkType> = (props) => {
   const buttonVariants: Record<string, string> = {
     default: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90',
     destructive: 'bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90',
-    outline: 'border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+    outline:
+      'border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
     secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
     ghost: 'hover:bg-accent hover:text-accent-foreground',
     link: 'text-primary underline-offset-4 hover:underline',
@@ -84,7 +87,16 @@ export const AccessibleLink: React.FC<CMSLinkType> = (props) => {
   const size = sizeFromProps ? sizeVariants[sizeFromProps] : sizeVariants.default
 
   return (
-    <Link className={cn('inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow]', variant, size, className)} href={href} {...newTabProps}>
+    <Link
+      className={cn(
+        'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow]',
+        variant,
+        size,
+        className,
+      )}
+      href={href}
+      {...newTabProps}
+    >
       {label}
       {children}
       {newTab && <span className="sr-only"> {t('newWindow')}</span>}

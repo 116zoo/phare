@@ -43,9 +43,7 @@ const collect = (node: unknown): void => {
         'answer',
         'submitButtonLabel',
         'subject',
-      ].includes(
-        key,
-      )
+      ].includes(key)
     ) {
       strings.add(value)
       continue
@@ -61,7 +59,7 @@ docs.forEach(collect)
 const all = [...strings].filter((value) => value !== 'ALT').sort()
 let failed = false
 
-for (const locale of ['fr', 'de', 'es'] as const) {
+for (const locale of ['fr'] as const) {
   const dictionary = seedDictionaries[locale]
   const missing = all.filter((value) => dictionary[value] === undefined)
 

@@ -12,8 +12,8 @@ async function getDocument(collection: Collection, slug: string, locale: Locale,
 
   const page = await payload.find({
     collection,
-    locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr' | 'all',
+    fallbackLocale: 'fr',
     depth,
     where: {
       slug: {

@@ -6,6 +6,7 @@ import { Locale, locales } from '@/i18n/config'
 import { defaultDescription, mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 import { getSiteSettings } from './getSiteSettings'
+import { localizedHref } from '@/i18n/path'
 
 const getImageURL = (
   image?: Media | Config['db']['defaultIDType'] | null,
@@ -48,8 +49,7 @@ export const applyTitleTemplate = (
 }
 
 /**
- * Builds the locale-prefixed path for a doc. The default locale is served
- * unprefixed, mirroring the rewrites in `src/proxy.ts`.
+ * Builds a canonical path, keeping French at the domain root.
  */
 export const getLocalizedPath = (args: {
   collectionPrefix?: string
@@ -57,16 +57,16 @@ export const getLocalizedPath = (args: {
   locale?: Locale
 }) => {
   const { collectionPrefix = '', slug, locale } = args
-  const localePrefix = locale && locale !== 'en' ? `/${locale}` : ''
+  const resolvedLocale = locale || 'fr'
 
-  // The home page lives at the root of its locale (`/`, `/fr`, `/de`, …).
+  // The home page lives at the domain root for French.
   // The `home` slug is only how the page is stored, so it must not leak into
   // the canonical URL — `/home` is a second URL for the very same page.
   if (!collectionPrefix && slug === 'home') {
-    return localePrefix || '/'
+    return localizedHref(resolvedLocale)
   }
 
-  return `${localePrefix}${collectionPrefix}${slug ? `/${slug}` : ''}` || '/'
+  return localizedHref(resolvedLocale, `${collectionPrefix}${slug ? `/${slug}` : ''}`)
 }
 
 export const generateMeta = async (args: {
@@ -77,9 +77,9 @@ export const generateMeta = async (args: {
 
   // The customizer: brand name, default description and social image come
   // from the `site-settings` global.
-  const settings = await getSiteSettings(locale || 'en')
+  const settings = await getSiteSettings(locale || 'fr')
   const siteName = settings.brandName
-  const localeSuffix = locale && locale !== 'en' ? ` (${locale})` : ''
+  const localeSuffix = locale && locale !== 'fr' ? ` (${locale})` : ''
 
   const ogImage = getImageURL(doc?.meta?.image, settings.seo.ogImage)
 
@@ -94,7 +94,8 @@ export const generateMeta = async (args: {
     ? applyTitleTemplate(settings.seo.titleTemplate, pageTitle, siteName, localeSuffix)
     : `${siteName}${localeSuffix}`
 
-  const description = doc?.meta?.description || settings.seo.defaultDescription || defaultDescription
+  const description =
+    doc?.meta?.description || settings.seo.defaultDescription || defaultDescription
 
   // Point every language at this doc so search engines can pair them up.
   const languages: Record<string, string> = {}

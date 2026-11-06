@@ -1,6 +1,4 @@
 import React from 'react'
-import { getTranslations } from 'next-intl/server'
-
 import type { RequiredDataFromCollectionSlug } from 'payload'
 
 import type { Post } from '@/payload-types'
@@ -9,7 +7,6 @@ import type { Locale } from '@/i18n/config'
 import { AEOSection } from '@/blocks/AEO'
 import { AccessibilityNotice } from '@/components/AccessibilityNotice'
 import { ArticleMarkup, BreadcrumbMarkup } from '@/components/schema'
-import { Breadcrumb } from '@/components/a11y'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import { PostHero } from '@/heros/PostHero'
@@ -34,11 +31,8 @@ type Props = {
  */
 export const PostView: React.FC<Props> = async ({ draft = false, locale, post, slug }) => {
   const serverUrl = getServerSideURL()
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
-  const canonicalUrl = `${serverUrl}${localePrefix}/posts/${slug}`
+  const canonicalUrl = `${serverUrl}${localizedHref(locale, `posts/${slug}`)}`
   const url = localizedHref(locale, `posts/${slug}`)
-  const t = await getTranslations({ locale, namespace: 'nav' })
-
   const heroImage = post.heroImage
   const imageUrl =
     heroImage && typeof heroImage === 'object'
@@ -73,20 +67,10 @@ export const PostView: React.FC<Props> = async ({ draft = false, locale, post, s
 
       <BreadcrumbMarkup
         items={[
-          { name: 'Posts', item: `${serverUrl}${localePrefix}/posts` },
+          { name: 'Posts', item: `${serverUrl}${localizedHref(locale, 'posts')}` },
           { name: post.title || slug, item: canonicalUrl },
         ]}
       />
-
-      <div className="container">
-        <Breadcrumb
-          className="mb-6"
-          items={[
-            { label: t('posts'), href: `${serverUrl}${localePrefix}/posts` },
-            { label: post.title || slug },
-          ]}
-        />
-      </div>
 
       <HeaderTheme theme="dark" />
 

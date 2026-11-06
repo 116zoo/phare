@@ -176,7 +176,7 @@ function isLocalizedValue(value: unknown): boolean {
 
   const keys = Object.keys(value as Record<string, unknown>)
 
-  return keys.length > 0 && keys.every((key) => locales.includes(key as Locale))
+  return keys.length > 0 && keys.every((key) => locales.includes(key as Exclude<Locale, 'all'>))
 }
 
 /** Removes `localizedData` / `locale` bookkeeping Payload adds to `all` reads. */

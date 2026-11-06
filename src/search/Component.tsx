@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react'
 import { useDebounce } from '@/utilities/useDebounce'
 import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
-import { defaultLocale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
+import { Locale } from '@/i18n/config'
 
 export const Search: React.FC = () => {
   const [value, setValue] = useState('')
@@ -16,11 +17,8 @@ export const Search: React.FC = () => {
   const debouncedValue = useDebounce(value)
 
   useEffect(() => {
-    // Keep the current locale: searching from /fr/search must stay on the
-    // French index, not fall back to the unprefixed route.
-    const prefix = locale === defaultLocale ? '' : `/${locale}`
-
-    router.push(`${prefix}/search${debouncedValue ? `?q=${debouncedValue}` : ''}`)
+    const path = localizedHref(locale as Locale, 'search')
+    router.push(`${path}${debouncedValue ? `?q=${debouncedValue}` : ''}`)
   }, [debouncedValue, locale, router])
 
   return (

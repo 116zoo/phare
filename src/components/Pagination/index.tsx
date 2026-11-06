@@ -12,6 +12,7 @@ import { cn } from '@/utilities/ui'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Locale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 import { useTranslations } from 'next-intl'
 
 export const Pagination: React.FC<{
@@ -24,7 +25,6 @@ export const Pagination: React.FC<{
   const t = useTranslations('pagination')
 
   const { className, page, totalPages, locale = 'en' } = props
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
   const hasNextPage = page < totalPages
   const hasPrevPage = page > 1
 
@@ -49,7 +49,7 @@ export const Pagination: React.FC<{
               labels={labels}
               disabled={!hasPrevPage}
               onClick={() => {
-                router.push(`${localePrefix}/posts/page/${page - 1}`)
+                router.push(localizedHref(locale, 'posts/page/' + (page - 1)))
               }}
             />
           </PaginationItem>
@@ -64,7 +64,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${localePrefix}/posts/page/${page - 1}`)
+                  router.push(localizedHref(locale, 'posts/page/' + (page - 1)))
                 }}
               >
                 {page - 1}
@@ -76,7 +76,7 @@ export const Pagination: React.FC<{
             <PaginationLink
               isActive
               onClick={() => {
-                router.push(`${localePrefix}/posts/page/${page}`)
+                router.push(localizedHref(locale, 'posts/page/' + page))
               }}
             >
               {page}
@@ -87,7 +87,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${localePrefix}/posts/page/${page + 1}`)
+                  router.push(localizedHref(locale, 'posts/page/' + (page + 1)))
                 }}
               >
                 {page + 1}
@@ -106,7 +106,7 @@ export const Pagination: React.FC<{
               labels={labels}
               disabled={!hasNextPage}
               onClick={() => {
-                router.push(`${localePrefix}/posts/page/${page + 1}`)
+                router.push(localizedHref(locale, 'posts/page/' + (page + 1)))
               }}
             />
           </PaginationItem>

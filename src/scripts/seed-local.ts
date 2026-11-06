@@ -58,7 +58,7 @@ const run = async () => {
   await payload.db.deleteMany({ collection: 'posts', req, where: {} })
   await payload.db.deleteVersions({ collection: 'posts', req, where: {} })
 
-  const locales = ['en', 'de', 'fr', 'es'] as const
+  const locales = ['en', 'fr'] as const
 
   const titleFor = (locale: (typeof locales)[number]) => `Digital Horizons (${locale})`
   const summaryFor = (locale: (typeof locales)[number]) =>

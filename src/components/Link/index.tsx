@@ -5,6 +5,7 @@ import React from 'react'
 
 import type { Page, Post } from '@/payload-types'
 import { Locale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 type CMSLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -13,6 +14,7 @@ type CMSLinkType = {
   label?: string | null
   locale?: Locale
   newTab?: boolean | null
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
   reference?: {
     relationTo: 'pages' | 'posts'
     value: Page | Post | string | number
@@ -31,18 +33,18 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     label,
     locale = 'en',
     newTab,
+    onClick,
     reference,
     size: sizeFromProps,
     url,
   } = props
 
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
-
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
-      ? `${localePrefix}${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
+      ? localizedHref(
+          locale,
+          `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`,
+        )
       : url
 
   if (!href) return null
@@ -53,7 +55,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+      <Link className={cn(className)} href={href || url || ''} onClick={onClick} {...newTabProps}>
         {label && label}
         {children && children}
       </Link>
@@ -62,7 +64,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
 
   return (
     <Button asChild className={className} size={size} variant={appearance}>
-      <Link className={cn(className)} href={href || url || ''} {...newTabProps}>
+      <Link className={cn(className)} href={href || url || ''} onClick={onClick} {...newTabProps}>
         {label && label}
         {children && children}
       </Link>

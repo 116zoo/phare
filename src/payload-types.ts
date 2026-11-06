@@ -113,8 +113,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale:
-    ('false' | 'none' | 'null') | false | null | ('en' | 'de' | 'fr' | 'es') | ('en' | 'de' | 'fr' | 'es')[];
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('fr' | 'en') | ('fr' | 'en')[];
   globals: {
     header: Header;
     footer: Footer;
@@ -127,7 +126,7 @@ export interface Config {
     'accessibility-statement': AccessibilityStatementSelect<false> | AccessibilityStatementSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
-  locale: 'en' | 'de' | 'fr' | 'es';
+  locale: 'fr' | 'en';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -374,7 +373,6 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
-  _objectKey?: string | null;
   folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
@@ -1919,7 +1917,6 @@ export interface MediaSelect<T extends boolean = true> {
   role?: T;
   alt?: T;
   caption?: T;
-  _objectKey?: T;
   folder?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -1,0 +1,294 @@
+.shell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: #d8f24e;
+  color: #171717;
+  box-shadow: 0 1.5rem 4rem rgb(23 23 23 / 14%);
+}
+
+.shell::before,
+.shell::after {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  content: '';
+  pointer-events: none;
+}
+
+.shell::before {
+  top: -7rem;
+  right: -5rem;
+  width: 18rem;
+  height: 18rem;
+  background: #fff;
+  opacity: 0.4;
+}
+
+.shell::after {
+  right: 12%;
+  bottom: -10rem;
+  width: 20rem;
+  height: 20rem;
+  border: 1px solid rgb(23 23 23 / 18%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 34rem;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  gap: 3rem;
+  padding: clamp(1.5rem, 5vw, 4.5rem);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #171717;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.sideTitle {
+  max-width: 13rem;
+  margin-top: 1.5rem;
+  color: #171717;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.sideNote {
+  max-width: 15rem;
+  color: rgb(23 23 23 / 68%);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.formArea {
+  align-self: center;
+  max-width: 40rem;
+  width: 100%;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 2.5rem;
+  color: rgb(23 23 23 / 58%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.progressLine {
+  height: 1px;
+  flex: 1;
+  background: rgb(23 23 23 / 24%);
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background: #171717;
+  transition: width 300ms ease;
+}
+
+.step {
+  animation: appear 360ms ease both;
+}
+
+.question {
+  max-width: 31rem;
+  margin: 0 0 1.75rem;
+  color: #171717;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 3.4vw, 3.15rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: rgb(23 23 23 / 68%);
+  font-size: 0.8rem;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgb(23 23 23 / 35%);
+  border-radius: 0;
+  background: transparent;
+  color: #171717;
+  font-size: 1.1rem;
+  outline: 0;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.input {
+  height: 3.2rem;
+}
+
+.textarea {
+  min-height: 7rem;
+  padding-top: 0.6rem;
+  resize: vertical;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgb(23 23 23 / 42%);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #171717;
+  box-shadow: 0 1px 0 #171717;
+}
+
+.error {
+  margin-top: 0.65rem;
+  color: #8b1e1e;
+  font-size: 0.8rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.back {
+  border: 0;
+  background: transparent;
+  color: rgb(23 23 23 / 62%);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: color 180ms ease;
+}
+
+.back:hover,
+.back:focus-visible {
+  color: #171717;
+}
+
+.next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3.25rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.35rem 0.8rem 1.5rem;
+  background: #171717;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.next:hover,
+.next:focus-visible {
+  background: #fff;
+  color: #171717;
+  transform: translateX(0.2rem);
+}
+
+.next:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
+.next:focus-visible,
+.back:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 4px;
+}
+
+.success {
+  animation: appear 360ms ease both;
+}
+
+.privateInvite {
+  max-width: 32rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgb(23 23 23 / 24%);
+  padding-top: 1.5rem;
+}
+
+.privateQuestion {
+  max-width: 29rem;
+  margin: 0 0 1.5rem;
+  color: rgb(23 23 23 / 76%);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.successMark {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1.5rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #171717;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 48rem) {
+  .content {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 3.5rem;
+  }
+
+  .side {
+    gap: 2rem;
+  }
+
+  .sideTitle {
+    max-width: 20rem;
+  }
+
+  .sideNote {
+    max-width: 22rem;
+  }
+}

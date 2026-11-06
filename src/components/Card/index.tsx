@@ -6,6 +6,7 @@ import React, { Fragment } from 'react'
 
 import type { Post } from '@/payload-types'
 import { Locale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 import { useTranslations } from 'next-intl'
 
 import { Media } from '@/components/Media'
@@ -31,8 +32,7 @@ export const Card: React.FC<{
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
   const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
-  const href = `${localePrefix}/${relationTo}/${slug}`
+  const href = localizedHref(locale, `${relationTo}/${slug}`)
 
   return (
     <article

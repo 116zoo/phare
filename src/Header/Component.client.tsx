@@ -10,6 +10,7 @@ import { Locale } from '@/i18n/config'
 
 import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
+import { localizedHref } from '@/i18n/path'
 
 interface HeaderClientProps {
   data: Header
@@ -18,12 +19,7 @@ interface HeaderClientProps {
   logo: number | Media | null
 }
 
-export const HeaderClient: React.FC<HeaderClientProps> = ({
-  brandName,
-  data,
-  locale,
-  logo,
-}) => {
+export const HeaderClient: React.FC<HeaderClientProps> = ({ brandName, data, locale, logo }) => {
   /* `headerTheme` is read from the DOM on the client only, so the attribute is deferred
      past hydration via suppressHydrationWarning rather than a second render of local state */
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
@@ -38,21 +34,21 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({
 
   return (
     <header
-      className="container relative z-20   "
+      className="relative z-20 bg-black text-white"
       suppressHydrationWarning
       {...(headerTheme ? { 'data-theme': headerTheme } : {})}
     >
-      <div className="py-8 flex justify-between">
-        <Link href={`/${locale === 'en' ? '' : locale}`}>
+      <div className="container flex min-h-[150px] items-center justify-between gap-6 py-0">
+        <Link className="flex h-[150px] shrink-0 items-start py-1" href={localizedHref(locale)}>
           {customLogo?.url ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               alt={customLogo.alt || brandName}
-              className="h-8 w-auto invert dark:invert-0"
+              className="h-[142px] w-auto max-w-none object-contain"
               src={customLogo.url}
             />
           ) : (
-            <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+            <Logo loading="eager" priority="high" className="h-[142px] max-w-none" locale={locale} />
           )}
         </Link>
         <HeaderNav data={data} locale={locale} />

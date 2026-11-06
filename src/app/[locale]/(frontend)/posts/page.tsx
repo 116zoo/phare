@@ -9,6 +9,7 @@ import { getDictionary } from '@/i18n/dictionary'
 import { Locale } from '@/i18n/config'
 import { getServerSideURL } from '@/utilities/getURL'
 import { queryPostsArchive } from '@/utilities/queries'
+import { localizedHref } from '@/i18n/path'
 
 interface PageProps {
   params: Promise<{ locale: Locale }>
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: dict.posts.title,
     alternates: {
-      canonical: `${getServerSideURL()}${locale === 'en' ? '' : `/${locale}`}/posts`,
+      canonical: `${getServerSideURL()}${localizedHref(locale, 'posts')}`,
     },
   }
 }

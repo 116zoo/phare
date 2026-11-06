@@ -11,8 +11,8 @@ const fetchAccessibilityStatements = async (locale: string) => {
 
   const result = await payload.find({
     collection: 'accessibility-statements',
-    locale: locale as 'en' | 'de' | 'fr' | 'es',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr',
+    fallbackLocale: 'fr',
     draft: false,
     depth: 1,
     pagination: false,

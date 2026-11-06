@@ -56,18 +56,10 @@ export const safeRevalidatePath = (
 export const docRevalidationPaths = (locale: string, path: string): string[] => {
   const joined = path.replace(/\/$/, '')
 
-  if (locale === 'en') {
-    return [joined || '/', `/en${joined || ''}`]
-  }
-
   return [`/${locale}${joined}`]
 }
 
-export const safeRevalidateDocPath = (
-  locale: string,
-  path: string,
-  logger?: Logger,
-): void => {
+export const safeRevalidateDocPath = (locale: string, path: string, logger?: Logger): void => {
   for (const candidate of docRevalidationPaths(locale, path)) {
     safeRevalidatePath(candidate, logger)
   }

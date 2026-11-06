@@ -22,8 +22,8 @@ const fetchPageBySlug = async (slug: string, locale: string, draft: boolean) => 
 
   const result = await payload.find({
     collection: 'pages',
-    locale: locale as 'en' | 'de' | 'fr' | 'es',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr',
+    fallbackLocale: 'fr',
     draft,
     limit: 1,
     overrideAccess: draft,
@@ -43,8 +43,8 @@ const fetchPostBySlug = async (slug: string, locale: string, draft: boolean) => 
 
   const result = await payload.find({
     collection: 'posts',
-    locale: locale as 'en' | 'de' | 'fr' | 'es',
-    fallbackLocale: 'en',
+    locale: locale as 'en' | 'fr',
+    fallbackLocale: 'fr',
     draft,
     limit: 1,
     overrideAccess: draft,
@@ -106,8 +106,8 @@ const cachedPostsArchive = unstable_cache(
 
     return payload.find({
       collection: 'posts',
-      locale: locale as 'en' | 'de' | 'fr' | 'es',
-      fallbackLocale: 'en',
+      locale: locale as 'en' | 'fr',
+      fallbackLocale: 'fr',
       draft: false,
       depth: 1,
       limit: 12,

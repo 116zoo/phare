@@ -1,0 +1,245 @@
+.page {
+  --ink: #171717;
+  --acid: #d8f24e;
+  background: #fff;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.intro {
+  min-height: min(52rem, 82vh);
+  padding: clamp(4rem, 9vw, 8.5rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.8rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.titleWrap {
+  margin-top: 0;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 24rem);
+  align-items: center;
+  gap: clamp(3rem, 9vw, 9rem);
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.kicker,
+.storyLabel {
+  margin: 0 0 1rem;
+  color: rgb(23 23 23 / 60%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.titleWrap h1 {
+  max-width: 62rem;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(4.25rem, 12vw, 11.5rem);
+  font-weight: 400;
+  letter-spacing: -0.09em;
+  line-height: 0.78;
+  text-transform: uppercase;
+}
+
+.titleWrap h1 em {
+  display: block;
+  margin-left: clamp(2rem, 15vw, 15rem);
+  font-size: 0.38em;
+  font-style: italic;
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.lead {
+  max-width: 28rem;
+  margin: clamp(4rem, 8vw, 8rem) 0 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.microphone {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  margin: 0;
+  transform: rotate(4deg);
+}
+
+.microphone::after {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 0.8rem;
+  left: 1.5rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: rgb(23 23 23 / 16%);
+  content: '';
+  filter: blur(0.45rem);
+  transform: rotate(-4deg);
+  z-index: -1;
+}
+
+.microphone img {
+  object-fit: contain;
+  filter: drop-shadow(1rem 1rem 0 var(--acid));
+}
+
+.microphone figcaption {
+  position: absolute;
+  right: 0;
+  bottom: -1rem;
+  left: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: clamp(5rem, 9vw, 8rem) max(1.25rem, calc((100vw - 84rem) / 2));
+  background: var(--ink);
+  color: #fff;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 7.5rem;
+  right: max(1.25rem, calc((100vw - 84rem) / 2));
+  left: max(1.25rem, calc((100vw - 84rem) / 2));
+  height: 1px;
+  background: rgb(255 255 255 / 30%);
+}
+
+.timelineItem {
+  position: relative;
+  z-index: 1;
+  padding-top: 3rem;
+}
+
+.timelineItem::before {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--acid);
+  content: '';
+}
+
+.timelineYear {
+  display: block;
+  margin-bottom: 1.2rem;
+  color: var(--acid);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.timelineItem strong {
+  display: block;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.timelineItem p {
+  max-width: 15rem;
+  margin: 1.2rem 0 0;
+  color: rgb(255 255 255 / 64%);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: clamp(3rem, 8vw, 8rem);
+  max-width: 84rem;
+  margin: 0 auto;
+  padding: clamp(5rem, 11vw, 11rem) max(1.25rem, 4vw);
+}
+
+.noteVisual {
+  justify-self: center;
+  width: min(100%, 18rem);
+  text-align: center;
+}
+
+.noteImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0.8rem 0.8rem 0 var(--acid));
+  transform: rotate(-5deg);
+}
+
+.noteVisual span {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.storyCopy {
+  max-width: 52rem;
+}
+
+.storyCopy h2 {
+  max-width: 30rem;
+  margin: 0 0 2.5rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.075em;
+  line-height: 0.84;
+}
+
+.storyCopy p {
+  max-width: 43rem;
+  margin: 0;
+  color: rgb(23 23 23 / 72%);
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .intro { min-height: 42rem; }
+  .meta { gap: 1rem; font-size: 0.58rem; }
+  .meta span:last-child { text-align: right; }
+  .heroGrid { grid-template-columns: 1fr; }
+  .microphone { width: min(70vw, 22rem); justify-self: center; }
+  .timeline { grid-template-columns: 1fr; gap: 3rem; }
+  .timelineLine { top: 6rem; bottom: 6rem; left: 1.7rem; width: 1px; height: auto; }
+  .timelineItem { padding-top: 0; padding-left: 3rem; }
+  .timelineItem::before { top: 0.25rem; left: 0; }
+  .story { display: block; }
+  .noteVisual { width: min(70vw, 18rem); margin: 0 auto 5rem; }
+  .storyLabel { margin-bottom: 3rem; }
+}

@@ -23,20 +23,23 @@ import { NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { Locale, locales } from '@/i18n/config'
 import { getServerSideURL } from '@/utilities/getURL'
+import { SiteBreadcrumb } from '@/components/SiteBreadcrumb'
+import { BackToTop } from '@/components/BackToTop'
 
 interface LocaleLayoutProps {
   children: React.ReactNode
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  const { locale } = await params
+  const { locale: localeParam } = await params
   const { isEnabled } = await draftMode()
 
   // next-intl requires the locale to be validated before it is used anywhere.
-  if (!locales.includes(locale)) {
+  if (!locales.includes(localeParam as (typeof locales)[number])) {
     notFound()
   }
+  const locale = localeParam as Exclude<Locale, 'all'>
 
   // Pin the request locale so server components (useTranslations) resolve the
   // right catalog instead of falling back to the default locale.
@@ -54,13 +57,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const themeVariables = themeToCssVariables(siteSettings.theme)
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang={locale} suppressHydrationWarning>
+    <html
+      className={cn(GeistSans.variable, GeistMono.variable)}
+      lang={locale}
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme defaultTheme={siteSettings.theme.defaultTheme} />
-        <style
-          dangerouslySetInnerHTML={{ __html: themeVariables }}
-          id="site-theme"
-        />
+        <style dangerouslySetInnerHTML={{ __html: themeVariables }} id="site-theme" />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
@@ -76,7 +80,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
             <SkipLink locale={locale} />
             <Header locale={locale} />
+            <SiteBreadcrumb />
             <main id="main-content">{children}</main>
+            <BackToTop locale={locale} />
             <Footer locale={locale} />
           </Providers>
         </NextIntlClientProvider>

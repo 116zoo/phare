@@ -3,90 +3,93 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 import { Locale, locales } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 // ISR: the sitemap is regenerated when a page is published
 // (revalidatePage hook) or after 10 minutes at most.
 export const revalidate = 600
 
 // Internal function with proper typing
-async function fetchPagesSitemap(locale: Locale): Promise<any> {
+async function fetchPagesSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
   // Narrow the locale type to prevent widening
   const localeConst = locale satisfies Locale
-  
+
   const payload = await getPayload({ config })
   const SITE_URL =
     process.env.NEXT_PUBLIC_SERVER_URL ||
     process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     'https://example.com'
 
-  const localePrefix = localeConst === 'en' ? '' : `/${localeConst}`
 
   const results = await payload.find({
     collection: 'pages',
-    locale: localeConst as 'en' | 'de' | 'fr' | 'es' | 'all',
-      fallbackLocale: 'en',
-      overrideAccess: false,
-      draft: false,
-      depth: 0,
-      limit: 1000,
-      pagination: false,
-      where: {
-        _status: {
-          equals: 'published',
-        },
+    locale: localeConst as 'en' | 'fr' | 'all',
+    fallbackLocale: 'fr',
+    overrideAccess: false,
+    draft: false,
+    depth: 0,
+    limit: 1000,
+    pagination: false,
+    where: {
+      _status: {
+        equals: 'published',
       },
-      select: {
-        slug: true,
-        updatedAt: true,
-      },
-    })
+    },
+    select: {
+      slug: true,
+      updatedAt: true,
+    },
+  })
 
-    const dateFallback = new Date().toISOString()
+  const dateFallback = new Date().toISOString()
 
-    const defaultSitemap = [
-      {
-        loc: `${SITE_URL}${localePrefix}/search`,
-        lastmod: dateFallback,
-      },
-      {
-        loc: `${SITE_URL}${localePrefix}/posts`,
-        lastmod: dateFallback,
-      },
-    ]
+  const defaultSitemap = [
+    {
+      loc: `${SITE_URL}${localizedHref(localeConst, 'search')}`,
+      lastmod: dateFallback,
+    },
+    {
+      loc: `${SITE_URL}${localizedHref(localeConst, 'posts')}`,
+      lastmod: dateFallback,
+    },
+  ]
 
-    const sitemap = results.docs
-      ? results.docs
-          .filter((page) => Boolean(page?.slug))
-          .map((page) => {
-            return {
-              loc: page?.slug === 'home' ? `${SITE_URL}${localePrefix}/` : `${SITE_URL}${localePrefix}/${page?.slug}`,
-              lastmod: page.updatedAt || dateFallback,
-            }
-          })
-      : []
+  const sitemap = results.docs
+    ? results.docs
+        .filter((page) => Boolean(page?.slug))
+        .map((page) => {
+          return {
+            loc:
+              page?.slug === 'home'
+                ? `${SITE_URL}${localizedHref(localeConst)}`
+                : `${SITE_URL}${localizedHref(localeConst, page?.slug || '')}`,
+            lastmod: page.updatedAt || dateFallback,
+          }
+        })
+    : []
 
-    return [...defaultSitemap, ...sitemap]
+  return [...defaultSitemap, ...sitemap]
 }
 
 // Cached per locale: the tag has to match the one the Payload hooks
 // revalidate (`pages-sitemap_<locale>`), otherwise the sitemap is never
 // invalidated and stays frozen at its first render.
-const getPagesSitemap = (locale: Locale) =>
+const getPagesSitemap = (locale: Exclude<Locale, 'all'>) =>
   unstable_cache(fetchPagesSitemap, ['pages-sitemap', locale], {
     tags: [`pages-sitemap_${locale}`],
   })(locale)
 
 interface RouteProps {
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }
 
 export async function GET(_request: Request, { params }: RouteProps) {
   const { locale } = await params
   // Validate locale
-  if (!locales.includes(locale as Locale)) {
+  if (!locales.includes(locale as (typeof locales)[number])) {
     return new Response('Invalid locale', { status: 404 })
   }
-  const sitemap = await getPagesSitemap(locale as Locale)
+  const sitemap = await getPagesSitemap(locale as Exclude<Locale, 'all'>)
 
   return getServerSideSitemap(sitemap)
 }

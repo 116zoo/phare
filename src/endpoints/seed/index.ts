@@ -41,9 +41,7 @@ export const seed = async ({
 
   // The English content is the reference version; every other locale gets
   // the same documents with their strings translated.
-  const otherLocales = locales.filter(
-    (locale) => locale !== 'en',
-  ) as Array<'en' | 'de' | 'fr' | 'es'>
+  const otherLocales = locales.filter((locale) => locale !== 'en') as Array<'en' | 'fr'>
 
   const reportMissing = (locale: string) => (missing: string[]) => {
     payload.logger.warn(`Missing ${locale} translations: ${missing.join(' | ')}`)
@@ -58,15 +56,16 @@ export const seed = async ({
   // clear the database
   await Promise.all(
     globals.map((global) => {
-      const data: Record<string, unknown> = global === 'accessibility-statement'
-        ? {
-            auditDate: new Date().toISOString(),
-            referentielVersion: 'RGAA 4.1.2',
-            globalComplianceRate: 0,
-            nonConformCriteria: [],
-            contactEmail: 'accessibility@example.com',
-          }
-        : { navItems: [] }
+      const data: Record<string, unknown> =
+        global === 'accessibility-statement'
+          ? {
+              auditDate: new Date().toISOString(),
+              referentielVersion: 'RGAA 4.1.2',
+              globalComplianceRate: 0,
+              nonConformCriteria: [],
+              contactEmail: 'accessibility@example.com',
+            }
+          : { navItems: [] }
 
       return payload.updateGlobal({
         slug: global,
@@ -302,8 +301,6 @@ export const seed = async ({
   const navLabels: Record<string, { posts: string; contact: string }> = {
     en: { posts: 'Posts', contact: 'Contact' },
     fr: { posts: 'Articles', contact: 'Contact' },
-    de: { posts: 'Beiträge', contact: 'Kontakt' },
-    es: { posts: 'Artículos', contact: 'Contacto' },
   }
 
   for (const locale of locales) {
@@ -312,7 +309,7 @@ export const seed = async ({
     await Promise.all([
       payload.updateGlobal({
         slug: 'header',
-        locale: locale as 'en' | 'de' | 'fr' | 'es',
+        locale: locale as 'en' | 'fr',
         data: {
           navItems: [
             {
@@ -337,7 +334,7 @@ export const seed = async ({
       }),
       payload.updateGlobal({
         slug: 'site-settings',
-        locale: locale as 'en' | 'de' | 'fr' | 'es',
+        locale: locale as 'en' | 'fr',
         data: translateSeedDoc(
           {
             brandName: 'Payload Website',
@@ -359,7 +356,7 @@ export const seed = async ({
       }),
       payload.updateGlobal({
         slug: 'footer',
-        locale: locale as 'en' | 'de' | 'fr' | 'es',
+        locale: locale as 'en' | 'fr',
         data: {
           navItems: [
             {

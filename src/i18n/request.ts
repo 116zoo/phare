@@ -18,8 +18,8 @@ export default getRequestConfig(async ({ locale }) => {
   const headerStore = await headers()
   const headerLocale = headerStore.get(LOCALE_HEADER)
   const candidate = headerLocale || locale
-  const validLocale = locales.includes(candidate as string)
-    ? (candidate as string)
+  const validLocale = locales.includes(candidate as (typeof locales)[number])
+    ? (candidate as (typeof locales)[number])
     : defaultLocale
 
   return {

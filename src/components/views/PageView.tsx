@@ -5,7 +5,6 @@ import type { Locale } from '@/i18n/config'
 
 import { AEOSection } from '@/blocks/AEO'
 import { AccessibilityNotice } from '@/components/AccessibilityNotice'
-import { Breadcrumb } from '@/components/a11y'
 import { BreadcrumbMarkup } from '@/components/schema'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
@@ -48,13 +47,7 @@ export const PageView: React.FC<Props> = async ({ draft = false, locale, page, s
   return (
     <article className="pt-16 pb-24">
       {slug !== 'home' && (
-        <>
-          <BreadcrumbMarkup items={[{ name: page.title || slug, item: canonicalUrl }]} />
-
-          <div className="container">
-            <Breadcrumb className="mb-6" items={[{ label: page.title || slug }]} />
-          </div>
-        </>
+        <BreadcrumbMarkup items={[{ name: page.title || slug, item: canonicalUrl }]} />
       )}
 
       <HeaderTheme theme="light" />

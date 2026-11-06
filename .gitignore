@@ -11,7 +11,12 @@ next-env.d.ts
 *.tsbuildinfo
 
 # Payload default media upload directory
-public/media/
+public/media/*
+!public/media/lubliner/
+public/media/lubliner/*
+!public/media/lubliner/lubliner-art-logo.png
+!public/media/lubliner/sans-nom-numero-1.jpg
+!public/media/lubliner/jean-paul-signature.png
 
 public/robots.txt
 public/sitemap*.xml

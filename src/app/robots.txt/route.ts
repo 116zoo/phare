@@ -1,4 +1,5 @@
 import { locales } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://example.com'
 
@@ -54,7 +55,7 @@ export function GET(): Response {
 
   // The locale-scoped sitemaps carry the real, localized URLs.
   for (const locale of locales) {
-    const prefix = locale === 'en' ? '' : `/${locale}`
+    const prefix = localizedHref(locale)
 
     lines.push(`Sitemap: ${siteUrl}${prefix}/pages-sitemap.xml`)
     lines.push(`Sitemap: ${siteUrl}${prefix}/posts-sitemap.xml`)

@@ -2,9 +2,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 
 import { locales } from '@/i18n/config'
-
-/** Builds the locale-prefixed path, mirroring `localePrefix: 'as-needed'`. */
-const localePrefixFor = (locale: string) => (locale === 'en' ? '' : `/${locale}`)
+import { localizedHref } from '@/i18n/path'
 
 export async function GET() {
   const payload = await getPayload({ config })
@@ -17,8 +15,8 @@ export async function GET() {
   const perLocale = await Promise.all(
     locales.map(async (locale) => {
       const localeOptions = {
-        locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-        fallbackLocale: 'en' as const,
+        locale: locale as 'en' | 'fr' | 'all',
+        fallbackLocale: 'fr' as const,
         overrideAccess: false,
         draft: false,
         depth: 0,
@@ -54,14 +52,15 @@ export async function GET() {
   ]
 
   for (const { locale, pages, posts } of perLocale) {
-    const prefix = localePrefixFor(locale)
+    const prefix = localizedHref(locale)
 
     // The summary lives in the `aeo` group (`aeo.aeoSummary`), not at the root
     // of the document.
     const pageLines = pages
       .filter((page: any) => page?.slug !== 'home' && page?.aeo?.aeoSummary)
       .map(
-        (page: any) => `- [${page.title}](${siteUrl}${prefix}/${page.slug}): ${page.aeo.aeoSummary}`,
+        (page: any) =>
+          `- [${page.title}](${siteUrl}${prefix}/${page.slug}): ${page.aeo.aeoSummary}`,
       )
 
     const postLines = posts
@@ -79,7 +78,7 @@ export async function GET() {
 
   lines.push(
     '## Editorial Principles',
-    `- [Accessibility statement](${siteUrl}/fr/accessibilite)`,
+    `- [Accessibility statement](${siteUrl}${localizedHref('fr', 'accessibilite')})`,
   )
 
   return new Response(lines.join('\n'), {

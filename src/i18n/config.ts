@@ -1,12 +1,10 @@
-export const locales = ['en', 'de', 'fr', 'es']
-export const defaultLocale = 'en'
+export const locales = ['fr', 'en'] as const
+export const defaultLocale = 'fr'
 export type Locale = (typeof locales)[number] | 'all'
 
 export const localeNames: Record<Exclude<Locale, 'all'>, string> = {
-  en: 'English',
-  de: 'Deutsch',
   fr: 'Français',
-  es: 'Español',
+  en: 'English',
 }
 /**
  * Cookie holding the locale explicitly picked in the language switcher. It

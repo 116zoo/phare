@@ -2,7 +2,8 @@
   "nav": {
     "home": "Accueil",
     "posts": "Articles",
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "contact": "Contact"
   },
   "posts": {
     "title": "Articles",

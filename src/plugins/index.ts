@@ -13,20 +13,25 @@ import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 import { defaultLocale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc, locale }) => {
   const localeLabel = locale === defaultLocale ? '' : ` (${locale})`
-  return doc?.title ? `${doc.title} | Payload Website Template${localeLabel}` : `Payload Website Template${localeLabel}`
+  return doc?.title
+    ? `${doc.title} | Payload Website Template${localeLabel}`
+    : `Payload Website Template${localeLabel}`
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc, locale }) => {
   const url = getServerSideURL()
-  const localePrefix = locale === defaultLocale ? '' : `/${locale}`
+  const resolvedLocale = (locale || defaultLocale) as 'fr' | 'en'
   // Infer collection from document structure: Pages have 'hero' and 'layout', Posts have 'heroImage', 'content', 'authors'
   const isPost = 'heroImage' in (doc || {}) || 'authors' in (doc || {})
   const collectionPrefix = isPost ? '/posts' : ''
 
-  return doc?.slug ? `${url}${localePrefix}${collectionPrefix}/${doc.slug}` : `${url}${localePrefix}`
+  return doc?.slug
+    ? `${url}${localizedHref(resolvedLocale, `${collectionPrefix}/${doc.slug}`)}`
+    : `${url}${localizedHref(resolvedLocale)}`
 }
 
 export const plugins: Plugin[] = [

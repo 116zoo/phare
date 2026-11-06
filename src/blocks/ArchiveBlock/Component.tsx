@@ -15,7 +15,7 @@ export const ArchiveBlock: React.FC<
     locale?: Locale
   }
 > = async (props) => {
-  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs, locale = 'en' } = props
+  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs, locale = 'fr' } = props
 
   const limit = limitFromProps || 3
 
@@ -35,8 +35,8 @@ export const ArchiveBlock: React.FC<
 
         return payload.find({
           collection: 'posts',
-          locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-          fallbackLocale: 'en',
+          locale: locale as 'en' | 'fr' | 'all',
+          fallbackLocale: 'fr',
           draft: false,
           depth: 1,
           limit,

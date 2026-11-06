@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "posts": "Posts",
-    "search": "Search"
+    "search": "Search",
+    "contact": "Contact"
   },
   "posts": {
     "title": "Posts",

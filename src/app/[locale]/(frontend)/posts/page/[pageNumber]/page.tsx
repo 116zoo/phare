@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 import { getDictionary } from '@/i18n/dictionary'
 import { Locale, locales } from '@/i18n/config'
 import { getServerSideURL } from '@/utilities/getURL'
+import { localizedHref } from '@/i18n/path'
 import { queryPostsArchive } from '@/utilities/queries'
 
 import configPromise from '@payload-config'
@@ -94,12 +95,11 @@ export default async function Page({ params: paramsPromise }: Args) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { locale, pageNumber } = await paramsPromise
   const dict = await getDictionary(locale)
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
 
   return {
     title: `${dict.posts.title} — ${dict.pagination.page} ${pageNumber || ''}`.trim(),
     alternates: {
-      canonical: `${getServerSideURL()}${localePrefix}/posts/page/${pageNumber}`,
+      canonical: `${getServerSideURL()}${localizedHref(locale, `posts/page/${pageNumber}`)}`,
     },
   }
 }

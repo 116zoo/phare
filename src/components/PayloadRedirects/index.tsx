@@ -1,6 +1,7 @@
 import type React from 'react'
 import type { Page, Post } from '@/payload-types'
 import { Locale } from '@/i18n/config'
+import { localizedHref } from '@/i18n/path'
 
 import { getCachedDocument } from '@/utilities/getDocument'
 import { getCachedRedirects } from '@/utilities/getRedirects'
@@ -24,22 +25,20 @@ export const PayloadRedirects: React.FC<Props> = async ({ disableNotFound, local
     }
 
     let redirectUrl: string
-    const localePrefix = locale === 'en' ? '' : `/${locale}`
-
     if (typeof redirectItem.to?.reference?.value === 'string') {
       const collection = redirectItem.to?.reference?.relationTo
       const id = redirectItem.to?.reference?.value
 
       const document = (await getCachedDocument(collection, id, locale)()) as Page | Post
-      redirectUrl = `${localePrefix}${redirectItem.to?.reference?.relationTo !== 'pages' ? `/${redirectItem.to?.reference?.relationTo}` : ''}/${
-        document?.slug
-      }`
+      redirectUrl = localizedHref(
+        locale,
+        `${redirectItem.to?.reference?.relationTo !== 'pages' ? `/${redirectItem.to?.reference?.relationTo}` : ''}/${document?.slug}`,
+      )
     } else {
-      redirectUrl = `${localePrefix}${redirectItem.to?.reference?.relationTo !== 'pages' ? `/${redirectItem.to?.reference?.relationTo}` : ''}/${
-        typeof redirectItem.to?.reference?.value === 'object'
-          ? redirectItem.to?.reference?.value?.slug
-          : ''
-      }`
+      redirectUrl = localizedHref(
+        locale,
+        `${redirectItem.to?.reference?.relationTo !== 'pages' ? `/${redirectItem.to?.reference?.relationTo}` : ''}/${typeof redirectItem.to?.reference?.value === 'object' ? redirectItem.to?.reference?.value?.slug : ''}`,
+      )
     }
 
     if (redirectUrl) redirect(redirectUrl)

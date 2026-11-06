@@ -23,7 +23,7 @@ export const Header: GlobalConfig = {
           appearances: false,
         }),
       ],
-      maxRows: 6,
+      maxRows: 9,
       localized: true,
       label: {
         en: 'Navigation Items',

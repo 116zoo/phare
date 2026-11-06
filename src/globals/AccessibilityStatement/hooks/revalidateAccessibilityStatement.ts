@@ -4,7 +4,8 @@ import {
   docRevalidationPaths,
   revalidateViaEndpoint,
   safeRevalidatePath,
-  safeRevalidateTag } from '../../../utilities/revalidate'
+  safeRevalidateTag,
+} from '../../../utilities/revalidate'
 
 /**
  * The site-wide accessibility statement feeds `/accessibilite` — purged
@@ -15,7 +16,7 @@ import {
 export const revalidateAccessibilityStatement: GlobalAfterChangeHook = async ({
   req: { payload },
 }) => {
-  const locales = ['en', 'de', 'fr', 'es']
+  const locales = ['fr', 'en']
   const tags = locales.map((locale) => `global_accessibility-statement_${locale}`)
   tags.push('accessibility-statements')
 

@@ -1,0 +1,180 @@
+.page {
+  --ink: #171717;
+  --acid: #d8f24e;
+  background: #fff;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.hero,
+.entries {
+  max-width: 84rem;
+  margin: 0 auto;
+  padding-right: max(1.25rem, calc((100vw - 84rem) / 2));
+  padding-left: max(1.25rem, calc((100vw - 84rem) / 2));
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 27rem);
+  align-items: center;
+  gap: clamp(3rem, 10vw, 10rem);
+  min-height: min(54rem, 88vh);
+  padding-top: clamp(4.5rem, 10vw, 9rem);
+  padding-bottom: clamp(5rem, 10vw, 9rem);
+}
+
+.eyebrow {
+  display: block;
+  margin: 0 0 1rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: .68rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.sectionIntro h2 {
+  max-width: 47rem;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 400;
+  letter-spacing: -.09em;
+  line-height: .8;
+  text-transform: uppercase;
+}
+
+.hero h1 em,
+.sectionIntro h2 em {
+  display: block;
+  margin-left: clamp(1.8rem, 11vw, 10rem);
+  font-size: .38em;
+  font-style: italic;
+  letter-spacing: -.06em;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.hero h1 em {
+  margin-left: clamp(0rem, 3vw, 3rem);
+}
+
+.lead {
+  max-width: 27rem;
+  margin: clamp(3.5rem, 8vw, 7rem) 0 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  letter-spacing: -.035em;
+  line-height: 1.14;
+}
+
+.signature {
+  width: min(100%, 24rem);
+  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
+  background: #fff;
+}
+
+.signature img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.signature figcaption {
+  margin-top: .7rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.portrait {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  margin: 0;
+  transform: rotate(3deg);
+}
+
+.portrait::after {
+  position: absolute;
+  right: -1rem;
+  bottom: -1rem;
+  left: 1rem;
+  height: 1rem;
+  background: var(--acid);
+  content: '';
+  z-index: -1;
+}
+
+.portrait img { object-fit: cover; filter: saturate(.8) contrast(1.05); }
+
+.portrait figcaption {
+  position: absolute;
+  right: 0;
+  bottom: -2.2rem;
+  left: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: .62rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.entries {
+  padding-top: clamp(5rem, 10vw, 9rem);
+  padding-bottom: clamp(6rem, 12vw, 11rem);
+}
+
+.sectionIntro { margin-bottom: clamp(3.5rem, 8vw, 7rem); }
+.sectionIntro h2 { font-size: clamp(3.5rem, 8vw, 8rem); }
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.6rem, 4vw, 4rem);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  min-height: clamp(17rem, 31vw, 25rem);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: var(--ink);
+  color: #fff;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform .35s ease, color .35s ease;
+}
+
+.card::before {
+  position: absolute;
+  inset: 0;
+  background: var(--acid);
+  clip-path: polygon(0 22%, 4% 14%, 13% 17%, 22% 11%, 33% 16%, 45% 9%, 58% 15%, 70% 10%, 83% 17%, 95% 12%, 100% 20%, 97% 77%, 90% 88%, 77% 83%, 66% 91%, 54% 84%, 42% 92%, 28% 84%, 16% 90%, 4% 81%);
+  content: '';
+  opacity: 0;
+  transform: scale(.82) rotate(-2deg);
+  transition: opacity .35s ease, transform .35s ease;
+  z-index: -1;
+}
+
+.card:hover,
+.card:focus-visible { color: var(--ink); transform: translateY(-.55rem) rotate(-1deg); }
+.card:hover::before,
+.card:focus-visible::before { opacity: 1; transform: scale(1.08) rotate(-2deg); }
+.cardNumber { position: absolute; top: 1.2rem; left: 1.5rem; font-family: var(--font-geist-mono), monospace; font-size: .7rem; letter-spacing: .15em; }
+.cardTitle { max-width: 19rem; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4vw, 4rem); letter-spacing: -.07em; line-height: .9; }
+.cardText { max-width: 22rem; margin-top: 1.5rem; font-size: 1rem; line-height: 1.45; opacity: .75; }
+.cardArrow { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; transition: transform .35s ease; }
+.card:hover .cardArrow, .card:focus-visible .cardArrow { transform: translate(.25rem, -.25rem); }
+.card2 { transform: rotate(1deg); }
+.card3 { transform: rotate(-1deg); }
+.card4 { transform: rotate(1deg); }
+.card2:hover, .card2:focus-visible, .card3:hover, .card3:focus-visible, .card4:hover, .card4:focus-visible { transform: translateY(-.55rem) rotate(-1deg); }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .portrait { width: min(70vw, 23rem); justify-self: center; }
+  .cardGrid { grid-template-columns: 1fr; }
+}

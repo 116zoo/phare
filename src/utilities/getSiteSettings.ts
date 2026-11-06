@@ -30,8 +30,8 @@ export const getSiteSettings = unstable_cache(
 
     const settings = await payload.findGlobal({
       slug: 'site-settings',
-      locale: locale as 'en' | 'de' | 'fr' | 'es' | 'all',
-      fallbackLocale: 'en',
+      locale: locale as 'en' | 'fr' | 'all',
+      fallbackLocale: 'fr',
       depth: 1,
     })
 
