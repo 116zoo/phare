@@ -253,6 +253,5 @@ jobs:
           urls: |
             http://localhost:3000/fr
             http://localhost:3000/en
-            http://localhost:3000/de
           configPath: ./lighthouserc.json
           uploadArtifacts: true
