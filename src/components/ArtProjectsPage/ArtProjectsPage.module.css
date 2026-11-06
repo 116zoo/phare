@@ -1,0 +1,19 @@
+.page { overflow: hidden; background: #fff; color: #171717; }
+.hero, .grid { max-width: 84rem; margin: 0 auto; padding-right: max(1.25rem, calc((100vw - 84rem) / 2)); padding-left: max(1.25rem, calc((100vw - 84rem) / 2)); }
+.hero { padding-top: clamp(2rem, 4.5vw, 4rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.eyebrow { margin: 0 0 1.5rem; font-family: var(--font-geist-mono), monospace; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+.hero h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(4.5rem, 12vw, 12rem); font-weight: 400; letter-spacing: -.1em; line-height: .78; text-transform: uppercase; }
+.hero h1 em { display: block; margin-left: clamp(1rem, 9vw, 9rem); font-size: .38em; font-style: italic; line-height: 1.1; text-transform: none; }
+.titleLead { word-spacing: .12em; }
+.titleAccent { letter-spacing: .02em; line-height: 1.3 !important; }
+.lead { max-width: 30rem; margin: clamp(3.5rem, 7vw, 6rem) 0 0; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.15; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 3rem); padding-bottom: clamp(5rem, 10vw, 9rem); }
+.card { position: relative; display: flex; min-height: 22rem; flex-direction: column; justify-content: flex-end; padding: clamp(1.5rem, 3vw, 2.7rem); background: #171717; color: #fff; transition: transform .3s ease, background-color .3s ease, color .3s ease; }
+.card:nth-child(2) { transform: translateY(2rem) rotate(1deg); }
+.card:nth-child(3) { transform: rotate(-1deg); }
+.card:hover, .card:focus-visible { background: #952635; color: #fff; text-decoration: none; transform: translateY(-.5rem) rotate(-1deg); }
+.card:nth-child(2):hover, .card:nth-child(2):focus-visible { transform: translateY(1.5rem) rotate(-1deg); }
+.number { position: absolute; top: 1.2rem; left: 1.4rem; font-family: var(--font-geist-mono), monospace; font-size: .68rem; letter-spacing: .15em; }
+.card h2 { max-width: 15rem; margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 4vw, 3.7rem); font-weight: 400; letter-spacing: -.07em; line-height: .9; }
+.card p { max-width: 19rem; margin: 1.5rem 0 0; font-size: .98rem; line-height: 1.45; opacity: .75; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .card:nth-child(2) { transform: none; } .card:nth-child(2):hover, .card:nth-child(2):focus-visible { transform: translateY(-.5rem) rotate(-1deg); } }

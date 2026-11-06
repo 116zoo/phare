@@ -4,11 +4,11 @@ const SITE_URL =
   'https://example.com'
 
 // The locale-scoped sitemaps are route handlers under `src/app/[locale]/(sitemaps)`,
-// so they need an explicit locale prefix. `en` is served unprefixed.
-const LOCALES = ['en', 'de', 'fr', 'es']
+// French is the default locale at the root; English is served under `/en`.
+const LOCALES = ['fr', 'en']
 
 const additionalSitemaps = LOCALES.flatMap((locale) => {
-  const prefix = locale === 'en' ? '' : `/${locale}`
+  const prefix = locale === 'fr' ? '' : `/${locale}`
 
   return [
     `${SITE_URL}${prefix}/pages-sitemap.xml`,

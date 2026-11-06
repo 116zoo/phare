@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audit SEO & visibilité IA — Lubliner ART</title>
+  <style>
+    :root{--ink:#171717;--muted:#666;--paper:#f7f6f2;--card:#fff;--line:#d8d5ce;--red:#952635;--green:#28784d;--amber:#9a6900}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+    main{max-width:1120px;margin:0 auto;padding:48px 24px 80px} h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.05} h1{font-size:clamp(2.6rem,7vw,6.2rem);margin:0 0 18px;letter-spacing:-.05em} h2{font-size:2rem;margin:48px 0 18px} h3{font-size:1.3rem;margin:0 0 8px} p{max-width:78ch}.intro{font-size:1.2rem;max-width:70ch}.meta{color:var(--muted);font-size:.9rem;margin-bottom:32px}.summary{border-left:4px solid var(--red);background:var(--card);padding:20px 24px;margin:26px 0 36px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.finding{background:var(--card);border:1px solid var(--line);padding:20px}.finding.critical{border-top:4px solid var(--red)}.finding.attention{border-top:4px solid var(--amber)}.finding.good{border-top:4px solid var(--green)}.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}.pill.critical{background:#f4dfe3;color:#74202d}.pill.attention{background:#f5ecd3;color:#765000}.pill.good{background:#dcefe4;color:#1d633e}.impact{color:var(--muted);font-size:.9rem}.code{position:relative;margin-top:14px}.code pre{overflow:auto;background:#171717;color:#f7f6f2;padding:16px;margin:0;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.copy{position:absolute;right:8px;top:8px;border:1px solid #777;background:#333;color:#fff;padding:5px 9px;cursor:pointer}.table{width:100%;border-collapse:collapse;background:var(--card)}.table th,.table td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:12px}.small{color:var(--muted);font-size:.9rem}.footer{border-top:1px solid var(--line);margin-top:56px;padding-top:18px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<main>
+  <div class="meta">Exploré le 2026-11-06 · environnement local <code>http://localhost:3002</code> · audit lecture seule</div>
+  <h1>Lubliner ART — audit SEO & visibilité IA</h1>
+  <p class="intro">Le site est lisible par les robots et ses principales pages répondent en 200. Les entités JSON-LD sont maintenant bien présentes. La découverte reste fragilisée par l’absence de sitemap racine et par une configuration de génération des sitemaps qui ne suit pas la stratégie d’URL actuelle.</p>
+  <div class="summary"><strong>À corriger dans cet ordre :</strong> rétablir <code>/sitemap.xml</code>, aligner <code>next-sitemap.config.cjs</code> sur les préfixes fr/en, compléter les métadonnées Open Graph des pages éditoriales, sortir les pages de recherche des sitemaps, puis enrichir les faits citables avec les coordonnées et les informations d’activité validées par le dirigeant.</div>
+
+  <h2>Les cinq priorités</h2>
+  <section class="grid">
+    <article class="finding critical"><span class="pill critical">Critique</span><h3>1. Sitemap racine absent</h3><p><code>/sitemap.xml</code> renvoie 404. Les quatre sitemaps directs existent : pages/posts en français et en anglais. Un crawler qui cherche le point d’entrée standard ne trouve donc rien.</p><p class="impact">Impact élevé · effort petit à moyen</p><div class="code"><button class="copy" data-copy="sitemap">Copier</button><pre id="sitemap">&lt;!-- index recommandé à /sitemap.xml --&gt;
+&lt;sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;sitemap&gt;&lt;loc&gt;https://www.example.com/pages-sitemap.xml&lt;/loc&gt;&lt;/sitemap&gt;
+  &lt;sitemap&gt;&lt;loc&gt;https://www.example.com/posts-sitemap.xml&lt;/loc&gt;&lt;/sitemap&gt;
+  &lt;sitemap&gt;&lt;loc&gt;https://www.example.com/en/pages-sitemap.xml&lt;/loc&gt;&lt;/sitemap&gt;
+  &lt;sitemap&gt;&lt;loc&gt;https://www.example.com/en/posts-sitemap.xml&lt;/loc&gt;&lt;/sitemap&gt;
+&lt;/sitemapindex&gt;</pre></div><p class="small">Remplacer le domaine d’exemple par le domaine de production. Ne pas publier les URLs localhost.</p></article>
+
+    <article class="finding critical"><span class="pill critical">Critique</span><h3>2. Préfixes incohérents dans next-sitemap</h3><p>Le runtime utilise le français à la racine et l’anglais sous <code>/en</code>. La configuration <code>next-sitemap.config.cjs</code> inverse ces préfixes pour les sitemaps additionnels.</p><p class="impact">Impact élevé · effort petit</p><div class="code"><button class="copy" data-copy="config">Copier</button><pre id="config">const additionalSitemaps = LOCALES.flatMap((locale) =&gt; {
+  const prefix = locale === 'fr' ? '' : `/${locale}`
+  return [
+    `${SITE_URL}${prefix}/pages-sitemap.xml`,
+    `${SITE_URL}${prefix}/posts-sitemap.xml`,
+  ]
+})</pre></div></article>
+
+    <article class="finding attention"><span class="pill attention">Attention</span><h3>3. Open Graph incomplet sur les pages dédiées</h3><p>La page d’accueil émet <code>og:url</code>. Les pages vérifiées <code>/presentation</code>, <code>/partenaires</code> et <code>/un-homme-de-radio</code> n’en émettent pas dans le HTML brut. Plusieurs routes ont un titre/description mais pas de bloc Open Graph propre à la page.</p><p class="impact">Impact moyen · effort petit</p><div class="code"><button class="copy" data-copy="og">Copier</button><pre id="og">import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
+
+return {
+  title,
+  description,
+  alternates: { canonical },
+  openGraph: mergeOpenGraph({ title, description, url: canonical }, 'Lubliner ART'),
+}</pre></div></article>
+
+    <article class="finding attention"><span class="pill attention">Attention</span><h3>4. Recherche et index de posts dans le sitemap</h3><p>Le sitemap de pages liste <code>/search</code> et <code>/posts</code>. La recherche interne est rarement une page destinée à l’indexation et peut créer des URLs faibles ou redondantes. Décider explicitement si <code>/posts</code> est une page éditoriale indexable.</p><p class="impact">Impact moyen · effort petit</p><div class="code"><button class="copy" data-copy="exclude">Copier</button><pre id="exclude">exclude: [
+  '/search',
+  '/search/*',
+  // ajouter '/posts' seulement si l’index éditorial n’est pas une page cible
+]</pre></div></article>
+
+    <article class="finding attention"><span class="pill attention">Attention</span><h3>5. Faits citables encore incomplets</h3><p><code>llms.txt</code> décrit bien les chemins créatifs et les pages clés, mais ne fournit pas dans la section de contact un téléphone, un e-mail, des horaires ou une zone d’intervention. Le JSON-LD contient une adresse parisienne ; elle doit être confirmée et reprise de façon cohérente dans les pages visibles et les fiches tierces.</p><p class="impact">Impact élevé pour la fiabilité · effort moyen</p><p class="small">Aucune donnée ne doit être inventée. À compléter uniquement avec les coordonnées, horaires, services et zones validés par Jean-Paul Lubliner.</p></article>
+  </section>
+
+  <h2>Constats vérifiés</h2>
+  <table class="table"><thead><tr><th>Contrôle</th><th>Résultat</th></tr></thead><tbody>
+    <tr><td>HTML sans JavaScript</td><td><span class="pill good">Bon</span> H1, titres, descriptions et contenu principal présents dans la réponse HTML brute.</td></tr>
+    <tr><td>Entités JSON-LD</td><td><span class="pill good">Bon</span> Organization, ProfessionalService, Person et WebSite présents sur les pages vérifiées. Adresse structurée détectée.</td></tr>
+    <tr><td>Robots IA</td><td><span class="pill good">Bon</span> GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended et Bingbot sont autorisés. CCBot, Bytespider et PetalBot sont explicitement bloqués : choix à confirmer, ce n’est pas une erreur technique automatique.</td></tr>
+    <tr><td>llms.txt</td><td><span class="pill good">Bon</span> Répond en 200, utilise localhost:3002 de façon cohérente dans cet audit et ne contient plus localhost:3000 ni le double slash signalé précédemment. La version EN est effectivement en anglais.</td></tr>
+    <tr><td>Sitemaps locaux</td><td><span class="pill good">Bon</span> 200 sur /pages-sitemap.xml, /posts-sitemap.xml, /en/pages-sitemap.xml et /en/posts-sitemap.xml ; 35 URLs dans chaque sitemap de pages.</td></tr>
+    <tr><td>Locales</td><td><span class="pill attention">Attention</span> /de et /es répondent 404. C’est cohérent avec <code>src/i18n/config.ts</code> qui ne déclare plus que fr/en ; vérifier qu’aucun ancien lien ou hreflang ne promet ces langues.</td></tr>
+    <tr><td>Performance</td><td><span class="pill attention">Attention</span> En dev local, TTFB observé autour de 0,35–0,42 s pour l’accueil et /presentation. Ce n’est pas une mesure Lighthouse de production ; LCP/INP/CLS n’ont pas été mesurés dans cet audit.</td></tr>
+  </tbody></table>
+
+  <h2>Limites et contrôle suivant</h2>
+  <p>Les assistants externes ne peuvent pas tester honnêtement un site limité à localhost : aucun test de recommandation ou de citation IA n’est donc déclaré. La présence Google Business Profile, les annuaires, les avis et les citations locales n’ont pas été vérifiés depuis cet environnement.</p>
+  <p>Après correction, refaire le contrôle dans 30 jours sur le domaine de production, avec vérification des URLs canoniques, des sitemaps, des faits de contact et des sources tierces.</p>
+  <div class="footer">Audit réalisé en lecture seule sur localhost:3002. Les extraits proposés sont des corrections à appliquer après validation ; aucune modification n’a été effectuée par cet audit.</div>
+</main>
+<script>
+  document.querySelectorAll('[data-copy]').forEach((button) => button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copy)
+    await navigator.clipboard.writeText(target.textContent)
+    const old = button.textContent
+    button.textContent = 'Copié'
+    setTimeout(() => { button.textContent = old }, 1200)
+  }))
+</script>
+</body>
+</html>

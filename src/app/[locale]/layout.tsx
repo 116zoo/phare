@@ -25,6 +25,7 @@ import { Locale, locales } from '@/i18n/config'
 import { getServerSideURL } from '@/utilities/getURL'
 import { SiteBreadcrumb } from '@/components/SiteBreadcrumb'
 import { BackToTop } from '@/components/BackToTop'
+import { SiteIdentityMarkup } from '@/components/schema'
 
 interface LocaleLayoutProps {
   children: React.ReactNode
@@ -79,6 +80,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             />
 
             <SkipLink locale={locale} />
+            <SiteIdentityMarkup
+              brandName={siteSettings.brandName || 'Lubliner ART'}
+              locale={locale}
+              siteUrl={getServerSideURL()}
+            />
             <Header locale={locale} />
             <SiteBreadcrumb />
             <main id="main-content">{children}</main>
@@ -100,6 +106,5 @@ export const metadata: Metadata = {
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
-    creator: '@payloadcms',
   },
 }

@@ -13,10 +13,11 @@ async function fetchPostsSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
   const localeConst = locale satisfies Locale
 
   const payload = await getPayload({ config })
-  const SITE_URL =
+  const SITE_URL = (
     process.env.NEXT_PUBLIC_SERVER_URL ||
     process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     'https://example.com'
+  ).replace(/\/+$/, '')
 
 
   const results = await payload.find({
@@ -56,7 +57,7 @@ async function fetchPostsSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
 // Cached per locale: the tag has to match the one the Payload hooks
 // revalidate (`posts-sitemap_<locale>`), otherwise the sitemap is never
 // invalidated and stays frozen at its first render.
-const getPostsSitemap = (locale: Exclude<Locale, 'all'>) =>
+export const getPostsSitemap = (locale: Exclude<Locale, 'all'>) =>
   unstable_cache(fetchPostsSitemap, ['posts-sitemap', locale], {
     tags: [`posts-sitemap_${locale}`],
   })(locale)

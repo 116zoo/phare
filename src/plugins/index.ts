@@ -17,9 +17,7 @@ import { localizedHref } from '@/i18n/path'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc, locale }) => {
   const localeLabel = locale === defaultLocale ? '' : ` (${locale})`
-  return doc?.title
-    ? `${doc.title} | Payload Website Template${localeLabel}`
-    : `Payload Website Template${localeLabel}`
+  return doc?.title ? `${doc.title} | Lubliner ART${localeLabel}` : `Lubliner ART${localeLabel}`
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc, locale }) => {

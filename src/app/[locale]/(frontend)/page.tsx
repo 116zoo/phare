@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { HomePage } from '@/components/HomePage'
 import type { Locale } from '@/i18n/config'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 /**
  * The home route re-exports the `[slug]` page, but Next.js only honours the
@@ -23,13 +24,19 @@ export default async function HomeRoute({ params }: Args) {
 
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { locale } = await params
+  const title = 'Lubliner ART — Jean-Paul Lubliner'
+  const description =
+    locale === 'en'
+      ? 'Lubliner ART, Jean-Paul Lubliner’s Paris studio for architecture, images, radio, publishing and artistic projects.'
+      : 'Lubliner ART, le studio parisien de Jean-Paul Lubliner : architecture, images, radio, publications et projets artistiques.'
+  const canonical = locale === 'fr' ? '/' : `/${locale}`
 
   return {
-    title: 'Lubliner ART — Jean-Paul Lubliner',
-    description:
-      'Jean-Paul Lubliner, art concepteur : architecture, images, radio, publications et projets contemporains.',
+    title,
+    description,
     alternates: {
-      canonical: locale === 'fr' ? '/' : `/${locale}`,
+      canonical,
     },
+    openGraph: mergeOpenGraph({ title, description, url: canonical }, 'Lubliner ART'),
   }
 }

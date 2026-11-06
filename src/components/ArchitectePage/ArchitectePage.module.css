@@ -1,14 +1,15 @@
 .page {
   --ink: #171717;
-  --acid: #d8f24e;
+  --acid: #952635;
   background: #fff;
   color: var(--ink);
   overflow: hidden;
 }
 
 .intro {
-  min-height: min(50rem, 80vh);
-  padding: clamp(4rem, 9vw, 8.5rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
+  box-sizing: border-box;
+  min-height: 0;
+  padding: clamp(2rem, 4.5vw, 4.25rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(2rem, 4vw, 4rem);
 }
 
 .meta {
@@ -22,7 +23,7 @@
   text-transform: uppercase;
 }
 
-.titleWrap { margin-top: clamp(4rem, 10vw, 9rem); }
+.titleWrap { margin-top: clamp(1rem, 2.5vw, 2.5rem); }
 
 .kicker,
 .storyLabel {
@@ -57,19 +58,25 @@
 
 .lead {
   max-width: 28rem;
-  margin: clamp(4rem, 8vw, 8rem) 0 0;
+  margin: clamp(2rem, 4vw, 4rem) 0 0;
   font-size: clamp(1.2rem, 2vw, 1.65rem);
   letter-spacing: -0.035em;
   line-height: 1.12;
 }
 
 .gallery {
+  order: 2 !important;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 0.7rem;
   padding: 0 max(0.7rem, calc((100vw - 88rem) / 2));
   background: var(--ink);
 }
+
+/* Keep the project imagery directly after the H1 introduction; the citable
+   summary follows the gallery rather than pushing it below the first screen. */
+.page > :global(.citable-aeo-section) { order: 3 !important; }
+.story { order: 4 !important; }
 
 .project {
   position: relative;

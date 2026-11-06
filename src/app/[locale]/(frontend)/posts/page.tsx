@@ -7,9 +7,8 @@ import React from 'react'
 import { HeaderTheme } from '@/components/HeaderTheme'
 import { getDictionary } from '@/i18n/dictionary'
 import { Locale } from '@/i18n/config'
-import { getServerSideURL } from '@/utilities/getURL'
 import { queryPostsArchive } from '@/utilities/queries'
-import { localizedHref } from '@/i18n/path'
+import { generateEditorialMeta } from '@/utilities/generateEditorialMeta'
 
 interface PageProps {
   params: Promise<{ locale: Locale }>
@@ -59,10 +58,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const dict = await getDictionary(locale)
 
-  return {
+  return generateEditorialMeta({
+    locale,
     title: dict.posts.title,
-    alternates: {
-      canonical: `${getServerSideURL()}${localizedHref(locale, 'posts')}`,
-    },
-  }
+    description:
+      locale === 'en'
+        ? 'Architecture, art, culture and contemporary transformations by Jean-Paul Lubliner.'
+        : 'Architecture, art, culture et transformations contemporaines par Jean-Paul Lubliner.',
+    path: 'posts',
+  })
 }

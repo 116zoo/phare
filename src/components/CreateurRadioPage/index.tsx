@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import type { Locale } from '@/i18n/config'
 import { EditorialCta } from '@/components/EditorialCta'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './CreateurRadioPage.module.css'
 
@@ -13,6 +14,29 @@ export function CreateurRadioPage({ locale }: Props) {
   const isEnglish = locale === 'en'
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Quand Jean-Paul Lubliner a-t-il créé Radio Arlequin ?', en: 'When did Jean-Paul Lubliner create Radio Arlequin?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner a créé Radio Arlequin entre 1980 et 1986, pendant les premières années des radios libres en France.',
+              en: 'Jean-Paul Lubliner created Radio Arlequin between 1980 and 1986, during the early years of free radio in France.',
+            },
+          },
+          {
+            question: { fr: 'Quel est son lien avec Radio Nova ?', en: 'What is his connection to Radio Nova?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner a participé à la création de Radio Nova avec Jean-François Bizot avant de revendre ses parts à Europe 2.',
+              en: 'Jean-Paul Lubliner helped create Radio Nova with Jean-François Bizot before selling his shares to Europe 2.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Entre 1980 et 1986, Jean-Paul Lubliner est l’un des premiers fondateurs de Radio Libre. Il crée Radio Arlequin puis participe à la création de Radio Nova avec Jean-François Bizot.',
+          en: 'Between 1980 and 1986, Jean-Paul Lubliner was one of the first founders of Free Radio. He created Radio Arlequin and helped launch Radio Nova with Jean-François Bizot.',
+        }}
+      />
       <section className={styles.intro} aria-labelledby="radio-title">
         <div className={styles.meta}>
           <span>{isEnglish ? 'A man of radio' : 'Un homme de radio'}</span>
@@ -23,8 +47,10 @@ export function CreateurRadioPage({ locale }: Props) {
           <div className={styles.titleWrap}>
             <p className={styles.kicker}>Jean-Paul Lubliner</p>
             <h1 id="radio-title">
-              Un homme
-              <em>de radio</em>
+              <span className={isEnglish ? styles.titleLeadEnglish : undefined}>
+                {isEnglish ? 'A man' : 'Un homme'}
+              </span>
+              <em>{isEnglish ? 'of radio' : 'de radio'}</em>
             </h1>
             <p className={styles.lead}>
               {isEnglish ? 'A free voice, new airwaves and a radio adventure at the heart of the 1980s.' : 'Une voix libre, des ondes nouvelles et une aventure radiophonique au cœur des années 80.'}

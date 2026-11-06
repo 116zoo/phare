@@ -1,7 +1,7 @@
 .page {
   --ink: #171717;
   --paper: #fff;
-  --acid: #d8f24e;
+  --acid: #952635;
   background: var(--paper);
   color: var(--ink);
   overflow: hidden;
@@ -10,7 +10,7 @@
 .intro {
   position: relative;
   min-height: min(52rem, 82vh);
-  padding: clamp(4rem, 9vw, 8.5rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
+  padding: clamp(2rem, 4.5vw, 4.25rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
   background: var(--paper);
 }
 
@@ -28,7 +28,7 @@
 .titleWrap {
   position: relative;
   z-index: 1;
-  margin-top: clamp(4rem, 10vw, 9rem);
+  margin-top: clamp(1rem, 2.5vw, 2.5rem);
 }
 
 .kicker,
@@ -90,11 +90,11 @@
 .cubeSection {
   position: relative;
   display: grid;
-  min-height: 48rem;
+  min-height: 54rem;
   place-items: center;
   overflow: hidden;
   background: #fff;
-  perspective: 1200px;
+  perspective: 1800px;
 }
 
 .cubeStage {
@@ -103,7 +103,6 @@
   z-index: 1;
   width: var(--cube-size);
   height: var(--cube-size);
-  transform: rotateX(-9deg) rotateY(16deg);
   transform-style: preserve-3d;
 }
 
@@ -114,7 +113,7 @@
   transform-style: preserve-3d;
   cursor: grab;
   touch-action: none;
-  transition: transform 120ms ease-out;
+  will-change: transform;
 }
 
 .cubeDragging {
@@ -243,6 +242,7 @@
 .cta:focus-visible {
   padding-inline: 0.7rem;
   background: var(--acid);
+  color: #171717;
   outline: none;
 }
 
@@ -251,7 +251,7 @@
   .introMeta { gap: 1rem; font-size: 0.58rem; }
   .introMeta span:last-child { text-align: right; }
   .award { right: 1.25rem; bottom: 2.5rem; }
-  .cubeSection { min-height: 35rem; }
+  .cubeSection { min-height: 40rem; }
   .cubeStage { --cube-size: min(74vw, 22rem); }
   .story { display: block; }
   .storyLabel { margin-bottom: 3rem; }

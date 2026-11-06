@@ -35,7 +35,7 @@ export const SiteSettings: GlobalConfig = {
       type: 'text',
       localized: true,
       required: true,
-      defaultValue: 'Payload Website',
+      defaultValue: 'Lubliner ART',
       label: {
         en: 'Brand name',
         de: 'Markenname',
@@ -112,7 +112,12 @@ export const SiteSettings: GlobalConfig = {
             { label: 'Medium', value: 'md' },
             { label: 'Large', value: 'lg' },
           ],
-          label: { en: 'Corner radius', de: 'Eckenradius', es: 'Radio de esquina', fr: 'Rayon des coins' },
+          label: {
+            en: 'Corner radius',
+            de: 'Eckenradius',
+            es: 'Radio de esquina',
+            fr: 'Rayon des coins',
+          },
         },
         {
           name: 'fontFamily',
@@ -152,7 +157,12 @@ export const SiteSettings: GlobalConfig = {
           name: 'titleTemplate',
           type: 'text',
           defaultValue: '%s | {site}',
-          label: { en: 'Title template', de: 'Titel-Vorlage', es: 'Plantilla de título', fr: 'Gabarit de titre' },
+          label: {
+            en: 'Title template',
+            de: 'Titel-Vorlage',
+            es: 'Plantilla de título',
+            fr: 'Gabarit de titre',
+          },
           admin: {
             description: {
               en: '%s is replaced by the page title, {site} by the brand name.',
@@ -177,12 +187,22 @@ export const SiteSettings: GlobalConfig = {
           name: 'ogImage',
           type: 'upload',
           relationTo: 'media',
-          label: { en: 'Default social image', de: 'Standard-Bild', es: 'Imagen social predeterminada', fr: 'Image social par défaut' },
+          label: {
+            en: 'Default social image',
+            de: 'Standard-Bild',
+            es: 'Imagen social predeterminada',
+            fr: 'Image social par défaut',
+          },
         },
         {
           name: 'twitterHandle',
           type: 'text',
-          label: { en: 'X / Twitter handle', de: 'X-/Twitter-Handle', es: 'Usuario de X/Twitter', fr: 'Compte X / Twitter' },
+          label: {
+            en: 'X / Twitter handle',
+            de: 'X-/Twitter-Handle',
+            es: 'Usuario de X/Twitter',
+            fr: 'Compte X / Twitter',
+          },
         },
       ],
     },

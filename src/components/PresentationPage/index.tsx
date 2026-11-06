@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import type { Locale } from '@/i18n/config'
 import { localizedHref } from '@/i18n/path'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './PresentationPage.module.css'
 
@@ -55,11 +56,35 @@ export function PresentationPage({ locale }: Props) {
 
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Quels sont les quatre domaines de Jean-Paul Lubliner ?', en: 'What are Jean-Paul Lubliner’s four fields?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner développe quatre domaines : l’architecture, la création d’images, la radio et les publications.',
+              en: 'Jean-Paul Lubliner works across four fields: architecture, image making, radio and publishing.',
+            },
+          },
+          {
+            question: { fr: 'Qui est Jean-Paul Lubliner ?', en: 'Who is Jean-Paul Lubliner?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner est un art concepteur basé à Paris, dont les projets associent espace, image, culture et transmission.',
+              en: 'Jean-Paul Lubliner is a Paris-based art designer whose projects connect space, image, culture and transmission.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Jean-Paul Lubliner est un art concepteur qui développe quatre trajectoires complémentaires : architecte, créateur d’images, homme de radio et créateur de publications.',
+          en: 'Jean-Paul Lubliner is an art designer pursuing four connected paths: architect, image maker, radio pioneer and publisher.',
+        }}
+      />
       <section className={styles.hero} aria-labelledby="presentation-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>{isEnglish ? 'Jean-Paul Lubliner' : 'Jean-Paul Lubliner'}</p>
           <h1 id="presentation-title">
-            {isEnglish ? 'A life in' : 'Une vie en'} <em>{isEnglish ? 'movement' : 'mouvement'}</em>
+            {isEnglish ? 'A life in' : 'Une vie en'}{' '}
+            <em className={styles.titleAccent}>{isEnglish ? 'movement' : 'mouvement'}</em>
           </h1>
           <p className={styles.lead}>
             {isEnglish
@@ -105,10 +130,38 @@ export function PresentationPage({ locale }: Props) {
               <span className={styles.cardNumber}>{entry.number}</span>
               <span className={styles.cardTitle}>{entry.title[language]}</span>
               <span className={styles.cardText}>{entry.text[language]}</span>
-              <span className={styles.cardArrow} aria-hidden="true">↗</span>
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className={styles.identity} aria-labelledby="presentation-identity-title">
+        <div className={styles.identityCopy}>
+          <span className={styles.eyebrow}>{isEnglish ? 'The studio' : 'Le studio'}</span>
+          <h2 id="presentation-identity-title">
+            {isEnglish ? 'Lubliner' : 'Lubliner'} <em>{isEnglish ? 'ART' : 'ART'}</em>
+          </h2>
+        </div>
+        <address
+          className={styles.identityAddress}
+          itemScope
+          itemType="https://schema.org/Organization"
+        >
+          <strong itemProp="name">Lubliner ART</strong>
+          <span itemProp="founder">Jean-Paul Lubliner</span>
+          <span
+            itemProp="address"
+            itemScope
+            itemType="https://schema.org/PostalAddress"
+          >
+            <span itemProp="streetAddress">8 passage des Abbesses</span>
+            <span>
+              <span itemProp="postalCode">75018</span>{' '}
+              <span itemProp="addressLocality">Paris</span>
+            </span>
+            <span itemProp="addressCountry">France</span>
+          </span>
+        </address>
       </section>
     </article>
   )

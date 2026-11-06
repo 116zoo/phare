@@ -18,7 +18,7 @@ export interface SiteSettings {
   }
 }
 
-const FALLBACK_BRAND_NAME = 'Payload Website'
+const FALLBACK_BRAND_NAME = 'Lubliner ART'
 
 /**
  * The customizer values, with the defaults applied so a global that was never
@@ -48,7 +48,9 @@ export const getSiteSettings = unstable_cache(
       },
       seo: {
         titleTemplate: settings?.seo?.titleTemplate || '%s | {site}',
-        defaultDescription: settings?.seo?.defaultDescription || '',
+        defaultDescription:
+          settings?.seo?.defaultDescription ||
+          'Lubliner ART, le studio de Jean-Paul Lubliner à Paris : architecture, images, radio, publications et projets artistiques.',
         ogImage: settings?.seo?.ogImage ?? null,
         twitterHandle: settings?.seo?.twitterHandle || '',
       },

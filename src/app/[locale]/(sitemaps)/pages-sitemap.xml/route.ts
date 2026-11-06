@@ -15,10 +15,11 @@ async function fetchPagesSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
   const localeConst = locale satisfies Locale
 
   const payload = await getPayload({ config })
-  const SITE_URL =
+  const SITE_URL = (
     process.env.NEXT_PUBLIC_SERVER_URL ||
     process.env.VERCEL_PROJECT_PRODUCTION_URL ||
     'https://example.com'
+  ).replace(/\/+$/, '')
 
 
   const results = await payload.find({
@@ -45,9 +46,11 @@ async function fetchPagesSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
 
   const defaultSitemap = [
     {
-      loc: `${SITE_URL}${localizedHref(localeConst, 'search')}`,
+      loc: `${SITE_URL}${localizedHref(localeConst, 'partenaires')}`,
       lastmod: dateFallback,
     },
+    // Internal search results are not editorial landing pages and stay out of
+    // the public sitemap.
     {
       loc: `${SITE_URL}${localizedHref(localeConst, 'posts')}`,
       lastmod: dateFallback,
@@ -74,7 +77,7 @@ async function fetchPagesSitemap(locale: Exclude<Locale, 'all'>): Promise<any> {
 // Cached per locale: the tag has to match the one the Payload hooks
 // revalidate (`pages-sitemap_<locale>`), otherwise the sitemap is never
 // invalidated and stays frozen at its first render.
-const getPagesSitemap = (locale: Exclude<Locale, 'all'>) =>
+export const getPagesSitemap = (locale: Exclude<Locale, 'all'>) =>
   unstable_cache(fetchPagesSitemap, ['pages-sitemap', locale], {
     tags: [`pages-sitemap_${locale}`],
   })(locale)

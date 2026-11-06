@@ -1,5 +1,5 @@
 .footer {
-  border-top: 1px solid rgb(216 242 78 / 55%);
+  border-top: 1px solid rgb(255 255 255 / 25%);
   background: #050505;
   color: #fff;
 }
@@ -35,12 +35,14 @@
 
 .columnTitle {
   margin: 0 0 1.3rem;
-  color: #d8f24e;
+  color: #952635;
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+
+.refugeTitle { letter-spacing: 0.24em; }
 
 .navList {
   display: flex;
@@ -67,7 +69,7 @@
   position: absolute;
   z-index: -1;
   inset: 12% -0.25rem 8% -0.45rem;
-  background: #d8f24e;
+  background: #952635;
   clip-path: polygon(2% 26%, 13% 10%, 28% 18%, 43% 5%, 61% 17%, 80% 7%, 98% 24%, 94% 81%, 77% 93%, 59% 84%, 42% 96%, 25% 85%, 8% 94%);
   content: '';
   opacity: 0;
@@ -78,7 +80,7 @@
 
 .footerLink:hover,
 .footerLink:focus-visible {
-  color: #171717;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -89,9 +91,11 @@
 }
 
 .footerLink:focus-visible {
-  outline: 2px solid #d8f24e;
+  outline: 2px solid #952635;
   outline-offset: 4px;
 }
+
+.submenuFooterLink { margin-left: 0.65rem; }
 
 .contactCol {
   color: rgb(255 255 255 / 72%);
@@ -103,7 +107,7 @@
 
 .contactLink {
   display: inline-block;
-  border-bottom: 1px solid #d8f24e;
+  border-bottom: 1px solid #952635;
   padding-bottom: 0.25rem;
   color: #fff;
   transition: color 180ms ease, background-color 180ms ease;
@@ -111,8 +115,49 @@
 
 .contactLink:hover,
 .contactLink:focus-visible {
-  background: #d8f24e;
+  background: #952635;
   color: #171717;
+  outline: none;
+}
+
+.socialList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialLink {
+  color: rgb(255 255 255 / 72%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: #952635;
+  outline: none;
+}
+
+.reviewLink {
+  display: inline-block;
+  margin-top: 0.85rem;
+  color: rgb(255 255 255 / 72%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.reviewLink:hover,
+.reviewLink:focus-visible {
+  color: #952635;
   outline: none;
 }
 

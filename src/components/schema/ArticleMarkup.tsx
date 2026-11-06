@@ -41,7 +41,9 @@ export const ArticleMarkup: React.FC<ArticleMarkupProps> = ({
     '@type': 'Article',
     headline,
     description,
-    image: image || `${serverUrl}/website-template-OG.webp`,
+    image:
+      image ||
+      `${serverUrl}/media/equipe-lubliner-art-architecture-1024x764-e7f63a4a-1200x630.webp`,
     datePublished,
     dateModified,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
@@ -60,13 +62,15 @@ export const ArticleMarkup: React.FC<ArticleMarkupProps> = ({
     },
     ...(keywords && { keywords }),
     ...(section && { articleSection: section }),
-    ...(description && { speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.aeo-summary'] } }),
+    ...(description && {
+      speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.aeo-summary'] },
+    }),
   }
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
     />
   )
 }

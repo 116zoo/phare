@@ -1,7 +1,7 @@
 import { locales } from '@/i18n/config'
 import { localizedHref } from '@/i18n/path'
 
-const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://example.com'
+const siteUrl = (process.env.NEXT_PUBLIC_SERVER_URL || 'https://example.com').replace(/\/+$/, '')
 
 /**
  * AI/search crawlers we explicitly welcome. GEO means being citable by AI
@@ -53,12 +53,12 @@ export function GET(): Response {
     '',
   )
 
+  lines.push(`Sitemap: ${siteUrl}/sitemap.xml`)
+
   // The locale-scoped sitemaps carry the real, localized URLs.
   for (const locale of locales) {
-    const prefix = localizedHref(locale)
-
-    lines.push(`Sitemap: ${siteUrl}${prefix}/pages-sitemap.xml`)
-    lines.push(`Sitemap: ${siteUrl}${prefix}/posts-sitemap.xml`)
+    lines.push(`Sitemap: ${siteUrl}${localizedHref(locale, 'pages-sitemap.xml')}`)
+    lines.push(`Sitemap: ${siteUrl}${localizedHref(locale, 'posts-sitemap.xml')}`)
   }
 
   lines.push(`Host: ${siteUrl.replace(/^https?:\/\//, '')}`, '')

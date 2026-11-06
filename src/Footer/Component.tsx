@@ -59,12 +59,27 @@ const getFooterLabel = (label: string | null | undefined, url: string | null | u
   return (pathLabel && byPath[pathLabel]) || englishFooterLabels[label] || label
 }
 
+const presentationSubmenuPaths = new Set([
+  'un-homme-de-radio',
+  'createur-d-images',
+  'createur-de-publications',
+  'les-projets-artistiques',
+  'un-architecte-avant-garde',
+])
+
+const isPresentationSubmenuItem = (url: string | null | undefined) => {
+  const path = url?.replace(/^\//, '').replace(/\/$/, '').split('/')[0]
+  return Boolean(path && presentationSubmenuPaths.has(path))
+}
+
 export async function Footer({ locale = 'en' }: FooterProps) {
   const footerData = await getCachedGlobal('footer', locale, 1)()
 
   const navItems = footerData?.navItems || []
   const { a11y, footer } = await getDictionary(locale)
   const isEnglish = locale === 'en'
+  const hasFooterPath = (path: string) =>
+    navItems.some(({ link }) => link?.url?.replace(/\/$/, '') === `/${path}`)
 
   return (
     <footer className={styles.footer}>
@@ -82,13 +97,27 @@ export async function Footer({ locale = 'en' }: FooterProps) {
               {navItems.map(({ link }, i) => (
                 <li key={i}>
                   <CMSLink
-                    className={styles.footerLink}
+                    className={`${styles.footerLink} ${isPresentationSubmenuItem(link.url) ? styles.submenuFooterLink : ''}`}
                     locale={locale}
                     {...link}
                     label={getFooterLabel(link.label, link.url, isEnglish)}
                   />
                 </li>
               ))}
+              {!hasFooterPath('partenaires') && (
+                <li>
+                  <Link className={styles.footerLink} href={localizedHref(locale, 'partenaires')}>
+                    {isEnglish ? 'Partners' : 'Partenaires'}
+                  </Link>
+                </li>
+              )}
+              {!hasFooterPath('magazine') && (
+                <li>
+                  <Link className={styles.footerLink} href={localizedHref(locale, 'magazine')}>
+                    Magazine
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link className={styles.footerLink} href={localizedHref(locale, 'contact')}>
                   {isEnglish ? 'Contact' : 'Contact'}
@@ -99,7 +128,9 @@ export async function Footer({ locale = 'en' }: FooterProps) {
         </div>
 
         <div className={styles.contactCol}>
-          <h2 className={styles.columnTitle}>{isEnglish ? 'The refuge' : 'Le refuge'}</h2>
+          <h2 className={`${styles.columnTitle} ${styles.refugeTitle}`}>
+            {isEnglish ? 'The refuge' : 'Le refuge'}
+          </h2>
           <p>
             8 passage des Abbesses
             <br />
@@ -107,8 +138,50 @@ export async function Footer({ locale = 'en' }: FooterProps) {
           </p>
           <p>{isEnglish ? 'Jean-Paul Lubliner, art designer.' : 'Jean-Paul Lubliner, art concepteur.'}</p>
           <Link className={styles.contactLink} href={localizedHref(locale, 'contact')}>
-            {isEnglish ? 'Start a conversation ↗' : 'Commencer une conversation ↗'}
+            {isEnglish ? 'Start a conversation' : 'Commencer une conversation'}
           </Link>
+          <nav aria-label={isEnglish ? 'Social media' : 'Réseaux sociaux'}>
+            <ul className={styles.socialList}>
+              <li>
+                <a
+                  className={styles.socialLink}
+                  href="https://www.instagram.com/lublinerartarchitecture/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  className={styles.socialLink}
+                  href="https://www.facebook.com/lublinerart/about/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  className={styles.socialLink}
+                  href="https://www.linkedin.com/in/jean-paul-lubliner-54640230"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+            <a
+              className={styles.reviewLink}
+              href="https://share.google/th48czB2mDTMlYHwn"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {isEnglish ? 'Leave a review' : 'Laisser un avis'}
+            </a>
+          </nav>
         </div>
       </div>
       <div className={styles.bottom}>

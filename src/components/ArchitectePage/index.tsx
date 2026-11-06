@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import type { Locale } from '@/i18n/config'
 import { EditorialCta } from '@/components/EditorialCta'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './ArchitectePage.module.css'
 
@@ -13,25 +14,33 @@ const projects = [
   {
     src: '/media/lubliner/starway-aquarium-escalier.jpg',
     alt: 'Aquarium et escalier dans le projet Starway to Heaven',
+    altEn: 'Aquarium and staircase in the Starway to Heaven project',
     label: 'Starway to Heaven · aquarium',
+    labelEn: 'Starway to Heaven · aquarium',
     className: styles.projectOne,
   },
   {
     src: '/media/lubliner/starway-bedroom-night.webp',
     alt: 'Chambre contemporaine avec vue nocturne sur Paris',
+    altEn: 'Contemporary bedroom with a night view over Paris',
     label: 'Starway to Heaven · nuit',
+    labelEn: 'Starway to Heaven · night',
     className: styles.projectTwo,
   },
   {
     src: '/media/lubliner/atelier-abbesses-interior.jpg',
     alt: 'Atelier réhabilité avec charpente apparente et verrière',
+    altEn: 'Renovated studio with exposed beams and glass roof',
     label: 'Atelier des Abbesses',
+    labelEn: 'Atelier des Abbesses',
     className: styles.projectThree,
   },
   {
     src: '/media/lubliner/starway-page-0001.jpg',
     alt: 'Vue intérieure d’un espace architectural signé Lubliner ART',
+    altEn: 'Interior view of an architectural space by Lubliner ART',
     label: 'Lubliner ART · espace intérieur',
+    labelEn: 'Lubliner ART · interior space',
     className: styles.projectFour,
   },
 ]
@@ -40,6 +49,29 @@ export function ArchitectePage({ locale }: Props) {
   const isEnglish = locale === 'en'
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Que propose Lubliner ART en architecture ?', en: 'What does Lubliner ART offer in architecture?' },
+            answer: {
+              fr: 'Lubliner ART conçoit des espaces de vie et des projets architecturaux en reliant usage, lumière, matières, design et imagination.',
+              en: 'Lubliner ART designs living spaces and architectural projects by connecting use, light, materials, design and imagination.',
+            },
+          },
+          {
+            question: { fr: 'Qui dirige le cabinet ?', en: 'Who leads the studio?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner dirige Lubliner ART et a créé son cabinet avec l’architecte Hery Ravelomananstoa.',
+              en: 'Jean-Paul Lubliner leads Lubliner ART and founded the practice with architect Hery Ravelomananstoa.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Lubliner ART est un cabinet d’architecture et de design dirigé par Jean-Paul Lubliner à Paris. Sa démarche crée des lieux vivants où l’usage, la lumière et l’imaginaire se rencontrent.',
+          en: 'Lubliner ART is an architecture and design studio led by Jean-Paul Lubliner in Paris. Its approach creates living places where use, light and imagination meet.',
+        }}
+      />
       <section className={styles.intro} aria-labelledby="architecte-title">
         <div className={styles.meta}>
           <span>{isEnglish ? 'Architecture creator' : 'Créateur d’architecture'}</span>
@@ -63,14 +95,14 @@ export function ArchitectePage({ locale }: Props) {
         {projects.map((project, index) => (
           <figure className={`${styles.project} ${project.className}`} key={project.src}>
             <Image
-              alt={project.alt}
+              alt={isEnglish ? project.altEn : project.alt}
               className={styles.projectImage}
               fill
               priority={index < 2}
               sizes="(max-width: 700px) 100vw, 50vw"
               src={project.src}
             />
-            <figcaption>{project.label}</figcaption>
+            <figcaption>{isEnglish ? project.labelEn : project.label}</figcaption>
           </figure>
         ))}
       </section>

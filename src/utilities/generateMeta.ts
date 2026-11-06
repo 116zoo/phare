@@ -14,7 +14,7 @@ const getImageURL = (
 ) => {
   const serverUrl = getServerSideURL()
 
-  let url = serverUrl + '/website-template-OG.webp'
+  let url = serverUrl + '/media/equipe-lubliner-art-architecture-1024x764-e7f63a4a-1200x630.webp'
 
   const candidate = image || fallback
 

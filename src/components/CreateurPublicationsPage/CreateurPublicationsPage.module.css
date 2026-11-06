@@ -1,6 +1,6 @@
 .page {
   --ink: #171717;
-  --acid: #d8f24e;
+  --acid: #952635;
   background: #fff;
   color: var(--ink);
   overflow: hidden;
@@ -8,7 +8,7 @@
 
 .intro {
   min-height: min(58rem, 88vh);
-  padding: clamp(4rem, 9vw, 8.5rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
+  padding: clamp(2rem, 4.5vw, 4.25rem) max(1.25rem, calc((100vw - 84rem) / 2)) clamp(4rem, 8vw, 7rem);
 }
 
 .meta {
@@ -25,9 +25,9 @@
 .heroGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(15rem, 24rem);
-  align-items: center;
+  align-items: start;
   gap: clamp(3rem, 9vw, 9rem);
-  margin-top: clamp(4rem, 8vw, 7rem);
+  margin-top: clamp(1rem, 2.5vw, 2.5rem);
 }
 
 .titleWrap { min-width: 0; }

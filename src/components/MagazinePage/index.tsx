@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/config'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './MagazinePage.module.css'
 
@@ -57,6 +58,29 @@ export function MagazinePage({ locale }: Props) {
   const articles = isEnglish ? articlesEn : articlesFr
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Qu’est-ce que le Magazine Lubliner ART ?', en: 'What is the Lubliner ART Magazine?' },
+            answer: {
+              fr: 'Le Magazine Lubliner ART est une page d’actualités et de regards consacrée à l’architecture, l’art, la culture et les transformations contemporaines.',
+              en: 'The Lubliner ART Magazine is a current-affairs and perspectives page dedicated to architecture, art, culture and contemporary change.',
+            },
+          },
+          {
+            question: { fr: 'Quels sujets sont traités ?', en: 'Which subjects does it cover?' },
+            answer: {
+              fr: 'Le magazine traite notamment de patrimoine, de climat, de matières, de lumière et des nouvelles manières d’habiter les espaces.',
+              en: 'The magazine covers heritage, climate, materials, light and new ways of inhabiting spaces.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Le Magazine de Jean-Paul Lubliner propose une sélection de sujets sur l’architecture, l’art, la culture et les façons d’habiter notre époque, avec des sources identifiées.',
+          en: 'Jean-Paul Lubliner’s Magazine selects stories about architecture, art, culture and the ways we inhabit our time, with identified sources.',
+        }}
+      />
       <header className={styles.hero}>
         <div className={styles.meta}>
           <span>Magazine</span>
@@ -94,7 +118,7 @@ export function MagazinePage({ locale }: Props) {
                 <h3>{article.title}</h3>
                 <p>{article.excerpt}</p>
                 <a href={article.href} rel="noreferrer" target="_blank">
-                  {isEnglish ? 'Read the source' : 'Lire la source'} <span aria-hidden="true">↗</span>
+                  {isEnglish ? 'Read the source' : 'Lire la source'}
                 </a>
               </div>
               <div className={styles.source}>{article.source}</div>

@@ -79,13 +79,13 @@ export const PostView: React.FC<Props> = async ({ draft = false, locale, post, s
 
       {draft && <LivePreviewListener />}
 
+      <AEOSection aeo={post.aeo} />
+
       <PostHero post={post as unknown as Post} locale={locale} />
 
       <div className="flex flex-col items-center gap-4 pt-8">
         <div className="container">
           <RichText className="max-w-[48rem] mx-auto" data={post.content} enableGutter={false} />
-
-          <AEOSection aeo={post.aeo} />
 
           <AccessibilityNotice locale={locale} statement={accessibilityStatement} />
 

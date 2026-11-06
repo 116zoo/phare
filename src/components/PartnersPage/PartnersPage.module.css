@@ -1,0 +1,20 @@
+.page { overflow: hidden; background: #fff; color: #171717; }
+.hero, .partners { max-width: 84rem; margin: 0 auto; padding-right: max(1.25rem, calc((100vw - 84rem) / 2)); padding-left: max(1.25rem, calc((100vw - 84rem) / 2)); }
+.hero { padding-top: clamp(2rem, 4.5vw, 4rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.eyebrow { margin: 0 0 1.5rem; font-family: var(--font-geist-mono), monospace; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+.hero h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(4.5rem, 12vw, 12rem); font-weight: 400; letter-spacing: -.1em; line-height: .78; text-transform: uppercase; }
+.hero h1 em { display: block; margin-left: clamp(1rem, 9vw, 9rem); font-size: .38em; font-style: italic; line-height: 1.1; text-transform: none; }
+.titleAccent { letter-spacing: .02em; }
+.lead { max-width: 32rem; margin: clamp(3.5rem, 7vw, 6rem) 0 0; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.15; }
+.partners { padding-bottom: clamp(5rem, 10vw, 9rem); }
+.sectionHeading { display: grid; grid-template-columns: minmax(10rem, .6fr) 1.4fr; gap: 2rem; align-items: end; margin-bottom: 2.5rem; border-top: 1px solid #171717; padding-top: 1.25rem; }
+.sectionHeading .eyebrow { margin: 0; }
+.sectionHeading h2 { max-width: 32rem; margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 400; letter-spacing: -.07em; line-height: .9; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.card { position: relative; display: block; aspect-ratio: 1.45; overflow: hidden; border: 1px solid #dedede; background: #f7f7f4; transition: border-color .25s ease, background-color .25s ease, transform .25s ease; }
+.card img { object-fit: contain; padding: 13%; transition: transform .35s ease; }
+.card:hover, .card:focus-visible { border-color: #171717; background: #952635; transform: translateY(-.35rem); text-decoration: none; }
+.card:hover img, .card:focus-visible img { transform: scale(1.06); }
+.cardLabel { position: absolute; right: .7rem; bottom: .55rem; left: .7rem; font-family: var(--font-geist-mono), monospace; font-size: .62rem; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .sectionHeading { display: block; } .sectionHeading h2 { margin-top: 2rem; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; } .card { aspect-ratio: 1.15; } .cardLabel { font-size: .55rem; } }

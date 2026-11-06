@@ -33,7 +33,7 @@ export const ThemeSelector: React.FC = () => {
       <button
         aria-label="Thème clair"
         aria-pressed={selectedTheme === 'light'}
-        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8f24e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'light' ? 'bg-white text-black' : 'text-white'}`}
+        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#952635] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'light' ? 'bg-white text-black' : 'text-white'}`}
         onClick={() => setTheme('light')}
         title="Clair"
         type="button"
@@ -43,7 +43,7 @@ export const ThemeSelector: React.FC = () => {
       <button
         aria-label="Thème sombre"
         aria-pressed={selectedTheme === 'dark'}
-        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8f24e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'dark' ? 'bg-white text-black' : 'text-white'}`}
+        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#952635] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'dark' ? 'bg-white text-black' : 'text-white'}`}
         onClick={() => setTheme('dark')}
         title="Sombre"
         type="button"
@@ -53,7 +53,7 @@ export const ThemeSelector: React.FC = () => {
       <button
         aria-label="Thème automatique"
         aria-pressed={selectedTheme === 'auto'}
-        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8f24e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'auto' ? 'bg-white text-black' : 'text-white'}`}
+        className={`rounded-full p-1.5 transition-colors hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#952635] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${selectedTheme === 'auto' ? 'bg-white text-black' : 'text-white'}`}
         onClick={() => setTheme(null)}
         title="Automatique"
         type="button"

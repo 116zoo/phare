@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import type { Locale } from '@/i18n/config'
 import { EditorialCta } from '@/components/EditorialCta'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './CreateurPublicationsPage.module.css'
 
@@ -13,6 +14,29 @@ export function CreateurPublicationsPage({ locale }: Props) {
   const isEnglish = locale === 'en'
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Quelles publications Jean-Paul Lubliner a-t-il créées ?', en: 'Which publications did Jean-Paul Lubliner create?' },
+            answer: {
+              fr: 'Jean-Paul Lubliner a fondé les magazines Nouvelles Vagues, créé Sans Nom et participé à l’aventure éditoriale de Citizen K.',
+              en: 'Jean-Paul Lubliner founded Nouvelles Vagues magazines, created Sans Nom and took part in the editorial adventure of Citizen K.',
+            },
+          },
+          {
+            question: { fr: 'Quand Citizen K a-t-il été créé ?', en: 'When was Citizen K created?' },
+            answer: {
+              fr: 'Citizen K est né en 1992 autour de l’équipe constituée par Jean-Paul Lubliner, Kappauf et Vincent Bergerat.',
+              en: 'Citizen K emerged in 1992 from the team assembled by Jean-Paul Lubliner, Kappauf and Vincent Bergerat.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Jean-Paul Lubliner est un créateur de publications. De 1987 à 1995, il fonde Nouvelles Vagues, crée Sans Nom et contribue à l’histoire de Citizen K, entre photographie, littérature et société.',
+          en: 'Jean-Paul Lubliner is a publisher and magazine creator. From 1987 to 1995, he founded Nouvelles Vagues, created Sans Nom and contributed to Citizen K’s history across photography, literature and society.',
+        }}
+      />
       <section className={styles.intro} aria-labelledby="publications-title">
         <div className={styles.meta}>
           <span>{isEnglish ? 'Publisher' : 'Créateur de publications'}</span>
@@ -23,8 +47,8 @@ export function CreateurPublicationsPage({ locale }: Props) {
           <div className={styles.titleWrap}>
             <p className={styles.kicker}>Jean-Paul Lubliner</p>
             <h1 id="publications-title">
-              Créateur
-              <em>de publications</em>
+              {isEnglish ? 'Creator' : 'Créateur'}
+              <em>{isEnglish ? 'of publications' : 'de publications'}</em>
             </h1>
             <p className={styles.lead}>
               {isEnglish ? 'Free, curious and elegant magazines telling their time differently.' : 'Des revues libres, curieuses et élégantes pour raconter leur époque autrement.'}
@@ -72,7 +96,9 @@ export function CreateurPublicationsPage({ locale }: Props) {
             sizes="(max-width: 700px) 70vw, 18rem"
             src="/media/lubliner/sans-nom-numero-1.jpg"
           />
-          <figcaption className={styles.coverCaption}>Sans Nom · issue no. 1</figcaption>
+          <figcaption className={styles.coverCaption}>
+            {isEnglish ? 'Sans Nom · issue no. 1' : 'Sans Nom · numéro 1'}
+          </figcaption>
         </figure>
         <div className={styles.storyCopy}>
           <div className={styles.storyLabel}>{isEnglish ? 'Publishing' : 'L’édition'}</div>

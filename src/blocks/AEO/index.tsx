@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FAQMarkup, SpeakableMarkup } from '@/components/schema'
+import { SpeakableMarkup } from '@/components/schema'
 
 export interface AEORelatedAnswerBlock {
   question?: string | null
@@ -19,21 +19,19 @@ interface AEOSectionProps {
 
 /**
  * Renders the AEO/GEO content that editors fill in on Pages and Posts:
- * an AI-oriented summary plus an FAQ. Emits the matching FAQPage and
- * SpeakableSpecification JSON-LD alongside the visible content.
+ * an AI-oriented summary plus visible answer blocks. Emits only
+ * SpeakableSpecification JSON-LD; FAQPage is restricted for commercial sites.
  */
 export const AEOSection: React.FC<AEOSectionProps> = ({ aeo }) => {
   if (!aeo?.aeoSummary && !aeo?.answerBlocks?.length) return null
 
-  const answerBlocks = (aeo.answerBlocks ?? []).filter(
-    (block) => Boolean(block.question && block.answer),
+  const answerBlocks = (aeo.answerBlocks ?? []).filter((block) =>
+    Boolean(block.question && block.answer),
   ) as Array<{ question: string; answer: string; sourceLink?: string }>
 
   return (
     <>
       {aeo.aeoSummary && <SpeakableMarkup cssSelector={['.aeo-summary']} />}
-      {answerBlocks.length > 0 && <FAQMarkup answerBlocks={answerBlocks} />}
-
       <section aria-labelledby="aeo" className="container max-w-[48rem] mx-auto mt-12">
         {aeo.aeoSummary && (
           <div className="aeo-summary mb-8 rounded-lg border border-border bg-muted/40 p-5">

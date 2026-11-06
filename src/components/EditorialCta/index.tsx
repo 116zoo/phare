@@ -20,7 +20,6 @@ export function EditorialCta({ locale, eyebrow, label, detail }: Props) {
         <p className={styles.detail}>{detail}</p>
         <Link className={styles.link} href={localizedHref(locale, 'contact')}>
           <span>{label}</span>
-          <span aria-hidden="true">↗</span>
         </Link>
       </div>
     </section>

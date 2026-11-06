@@ -98,6 +98,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
 
   return {
     title: dict.search.title,
+    robots: { index: false, follow: true },
     alternates: {
       canonical: `${getServerSideURL()}${localizedHref(locale, 'search')}`,
     },

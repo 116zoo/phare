@@ -42,7 +42,7 @@ export function NewsletterCard({ locale }: Props) {
             type="email"
           />
           <button aria-label={isEnglish ? 'Subscribe to the newsletter' : 'S’inscrire à la newsletter'} type="submit">
-            →
+            {isEnglish ? 'Join' : 'S’inscrire'}
           </button>
         </div>
       )}

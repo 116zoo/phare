@@ -110,7 +110,7 @@ export default async function AccessibilityStatementPage({ params }: Accessibili
                   globalComplianceRate >= 100
                     ? 'text-green-600'
                     : globalComplianceRate >= 50
-                      ? 'text-yellow-600'
+                      ? 'text-[#952635]'
                       : 'text-red-600',
                 )}
               >
@@ -125,7 +125,7 @@ export default async function AccessibilityStatementPage({ params }: Accessibili
                     {a.fullyCompliant}
                   </span>
                 ) : globalComplianceRate >= 50 ? (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#952635]/10 text-[#952635]">
                     {a.partiallyCompliant}
                   </span>
                 ) : (

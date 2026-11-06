@@ -39,13 +39,23 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     url,
   } = props
 
+  const localizedCustomUrl =
+    type === 'custom' &&
+    url?.startsWith('/') &&
+    !url.startsWith('/admin') &&
+    !url.startsWith('/api') &&
+    !url.startsWith('/en/') &&
+    !url.startsWith('/fr/')
+      ? localizedHref(locale, url)
+      : url
+
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? localizedHref(
           locale,
           `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${reference.value.slug}`,
         )
-      : url
+      : localizedCustomUrl
 
   if (!href) return null
 

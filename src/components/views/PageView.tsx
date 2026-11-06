@@ -56,10 +56,10 @@ export const PageView: React.FC<Props> = async ({ draft = false, locale, page, s
 
       {draft && <LivePreviewListener />}
 
+      <AEOSection aeo={page.aeo} />
+
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
-
-      <AEOSection aeo={page.aeo} />
 
       <AccessibilityNotice locale={locale} statement={accessibilityStatement} />
     </article>

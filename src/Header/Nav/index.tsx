@@ -16,13 +16,56 @@ import { useEffect, useRef, useState } from 'react'
 
 import styles from './HeaderNav.module.css'
 
+type NavItem = NonNullable<HeaderType['navItems']>[number]
+type NavLink = NonNullable<NavItem['link']>
+
+const presentationRoutes: Record<string, string> = {
+  'Un homme de radio': 'un-homme-de-radio',
+  'A man of radio': 'un-homme-de-radio',
+  'Créateur d’images': 'createur-d-images',
+  "Créateur d'images": 'createur-d-images',
+  'Image creator': 'createur-d-images',
+  'Créateur de publications': 'createur-de-publications',
+  'Publication creator': 'createur-de-publications',
+  'Les projets artistiques': 'les-projets-artistiques',
+  'Art projects': 'les-projets-artistiques',
+  'Un architecte avant-garde': 'un-architecte-avant-garde',
+  'An avant-garde architect': 'un-architecte-avant-garde',
+}
+
+const presentationEnglishLabels: Record<string, string> = {
+  'Un homme de radio': 'A man of radio',
+  'Créateur d’images': 'Image creator',
+  "Créateur d'images": 'Image creator',
+  'Créateur de publications': 'Publication creator',
+  'Les projets artistiques': 'Art projects',
+  'Un architecte avant-garde': 'An avant-garde architect',
+}
+
+const localizePresentationLink = (link: NavLink, locale: Locale) => {
+  const label = link.label?.trim() || ''
+  const route = presentationRoutes[label]
+
+  return {
+    ...link,
+    ...(route
+      ? {
+          type: 'custom' as const,
+          url: localizedHref(locale, route),
+          reference: null,
+        }
+      : {}),
+    label: locale === 'en' ? presentationEnglishLabels[label] || link.label : link.label,
+  }
+}
+
 export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data, locale }) => {
   const navItems = data?.navItems || []
   const [presentationItem, ...restItems] = navItems
   const menuItems = restItems.filter(({ link }) => {
     const url = link?.url?.replace(/\/$/, '')
 
-    return url !== '/contact' && url !== '/les-projets-artistiques'
+    return url !== '/contact'
   })
   const t = useTranslations('a11y')
   const tNav = useTranslations('nav')
@@ -74,7 +117,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
               onFocus={() => setPresentationOpen(true)}
               type="button"
             >
-              {presentationItem.link.label || 'Présentation'}
+              {locale === 'en' ? 'Presentation' : presentationItem.link.label || 'Présentation'}
               <span
                 aria-hidden="true"
                 className={`text-[0.6rem] transition-transform ${presentationOpen ? 'rotate-180' : ''}`}
@@ -96,7 +139,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
                   key={i}
                   className={`${styles.submenuLink} group items-center justify-between rounded-xl`}
                   locale={locale}
-                  {...link}
+                  {...localizePresentationLink(link, locale)}
                   appearance="inline"
                   onClick={() => setPresentationOpen(false)}
                 />
@@ -109,6 +152,12 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
           href={localizedHref(locale, 'magazine')}
         >
           Magazine
+        </Link>
+        <Link
+          className={styles.navAction}
+          href={localizedHref(locale, 'partenaires')}
+        >
+          {locale === 'en' ? 'Partners' : 'Partenaires'}
         </Link>
         <Link
           className={styles.navAction}
@@ -133,7 +182,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
         aria-controls="mobile-navigation"
         aria-expanded={mobileOpen}
         aria-label={mobileOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:border-[#d8f24e] hover:text-[#d8f24e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8f24e] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:border-[#952635] hover:text-[#952635] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#952635] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
         onClick={() => setMobileOpen((open) => !open)}
         type="button"
       >
@@ -141,10 +190,10 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
       </button>
 
       <div
-        className={`absolute right-0 top-[calc(100%+1rem)] z-50 w-[min(22rem,calc(100vw-2rem))] origin-top-right rounded-2xl border border-[#d8f24e]/55 bg-black/95 p-3 text-white shadow-2xl shadow-black/50 backdrop-blur transition-all lg:hidden ${mobileOpen ? 'visible scale-100 opacity-100' : 'invisible scale-95 opacity-0'}`}
+        className={`absolute right-0 top-[calc(100%+1rem)] z-50 w-[min(22rem,calc(100vw-2rem))] origin-top-right rounded-2xl border border-[#952635]/55 bg-black/95 p-3 text-white shadow-2xl shadow-black/50 backdrop-blur transition-all lg:hidden ${mobileOpen ? 'visible scale-100 opacity-100' : 'invisible scale-95 opacity-0'}`}
         id="mobile-navigation"
       >
-        <div className="border-b border-white/10 px-3 pb-3 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#d8f24e]">
+        <div className="border-b border-white/10 px-3 pb-3 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#952635]">
           Navigation
         </div>
         <div className="py-2">
@@ -153,7 +202,7 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
               key={i}
               className={`${styles.submenuLink} rounded-xl`}
               locale={locale}
-              {...link}
+              {...localizePresentationLink(link, locale)}
               appearance="inline"
               onClick={() => setMobileOpen(false)}
             />
@@ -164,6 +213,13 @@ export const HeaderNav: React.FC<{ data: HeaderType; locale: Locale }> = ({ data
             onClick={() => setMobileOpen(false)}
           >
             Magazine
+          </Link>
+          <Link
+            className={`${styles.mobileNavLink} rounded-xl`}
+            href={localizedHref(locale, 'partenaires')}
+            onClick={() => setMobileOpen(false)}
+          >
+            {locale === 'en' ? 'Partners' : 'Partenaires'}
           </Link>
           <Link
             className={`${styles.mobileNavLink} rounded-xl`}

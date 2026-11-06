@@ -1,0 +1,77 @@
+.section {
+  order: 2;
+  border-bottom: 1px solid rgb(23 23 23 / 14%);
+  background: #f6f6f2;
+  color: #171717;
+}
+
+/* Keep the page title above the answer block on every page that uses CitableAEO. */
+:global(article:has(> .citable-aeo-section)) {
+  display: flex;
+  flex-direction: column;
+}
+
+:global(article:has(> .citable-aeo-section) > :has(h1)) { order: 1; }
+
+:global(article:has(> .citable-aeo-section) > :not(.citable-aeo-section):not(:has(h1))) {
+  order: 3;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4.5rem) max(1.25rem, calc((100vw - 84rem) / 2));
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 1rem;
+  color: rgb(23 23 23 / 58%);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: .66rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.summaryBlock { position: relative; }
+.summaryBlock::before {
+  position: absolute;
+  top: -.55rem;
+  left: -.7rem;
+  width: 3rem;
+  height: .25rem;
+  background: #952635;
+  content: '';
+  transform: rotate(-2deg);
+}
+
+.summaryBlock h2 {
+  margin: 0 0 1.2rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 4vw, 4.25rem);
+  font-weight: 400;
+  letter-spacing: -.07em;
+  line-height: .9;
+}
+
+.summary {
+  max-width: 42rem;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.45;
+}
+
+.answers dl { margin: 0; }
+.answer { border-top: 1px solid rgb(23 23 23 / 18%); padding: 1rem 0 1.15rem; }
+.answer:last-child { border-bottom: 1px solid rgb(23 23 23 / 18%); }
+.answer dt { margin-bottom: .35rem; font-weight: 700; }
+.answer dd { max-width: 48rem; margin: 0; color: rgb(23 23 23 / 70%); font-size: .98rem; line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .inner { grid-template-columns: 1fr; gap: 3rem; }
+}

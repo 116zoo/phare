@@ -45,7 +45,7 @@ export function LanguageSwitcher() {
         <button
           aria-label={label}
           aria-pressed={currentLocale === locale}
-          className={`rounded-sm px-1.5 py-1 text-base leading-none transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8f24e] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${currentLocale === locale ? 'opacity-100' : 'opacity-45'}`}
+          className={`rounded-sm px-1.5 py-1 text-base leading-none transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#952635] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${currentLocale === locale ? 'opacity-100' : 'opacity-45'}`}
           key={locale}
           onClick={() => switchLocale(locale)}
           title={label}

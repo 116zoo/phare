@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import type { Locale } from '@/i18n/config'
 import { EditorialCta } from '@/components/EditorialCta'
+import { CitableAEO } from '@/components/CitableAEO'
 
 import styles from './TourEiffel2000Page.module.css'
 import { InteractiveCube } from './InteractiveCube'
@@ -9,32 +10,38 @@ import { InteractiveCube } from './InteractiveCube'
 const images = [
   {
     src: '/media/lubliner/J-69-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel photographiée en noir et blanc, depuis sa structure',
+    altFr: 'La Tour Eiffel photographiée en noir et blanc, depuis sa structure',
+    altEn: 'The Eiffel Tower photographed in black and white from within its structure',
     className: styles.cubeFaceFront,
   },
   {
     src: '/media/lubliner/J-103-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel et un motard, dans la série photographique de Jean-Paul Lubliner',
+    altFr: 'La Tour Eiffel et un motard, dans la série photographique de Jean-Paul Lubliner',
+    altEn: 'The Eiffel Tower and a motorcyclist in Jean-Paul Lubliner’s photographic series',
     className: styles.cubeFaceRight,
   },
   {
     src: '/media/lubliner/J-176-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel et son ombre photographiées dans la collection',
+    altFr: 'La Tour Eiffel et son ombre photographiées dans la collection',
+    altEn: 'The Eiffel Tower and its shadow photographed in the collection',
     className: styles.cubeFaceBack,
   },
   {
     src: '/media/lubliner/J-153-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel reflétée dans une architecture contemporaine',
+    altFr: 'La Tour Eiffel reflétée dans une architecture contemporaine',
+    altEn: 'The Eiffel Tower reflected in contemporary architecture',
     className: styles.cubeFaceLeft,
   },
   {
     src: '/media/lubliner/J-227-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel saisie dans un paysage en mouvement',
+    altFr: 'La Tour Eiffel saisie dans un paysage en mouvement',
+    altEn: 'The Eiffel Tower captured in a moving landscape',
     className: styles.cubeFaceTop,
   },
   {
     src: '/media/lubliner/J-160-Tour-Eiffel-Jean-Paul-Lubliner-Photographie-Art.jpg',
-    alt: 'La Tour Eiffel photographiée au cœur de la foule parisienne',
+    altFr: 'La Tour Eiffel photographiée au cœur de la foule parisienne',
+    altEn: 'The Eiffel Tower photographed among the Parisian crowd',
     className: styles.cubeFaceBottom,
   },
 ]
@@ -47,6 +54,29 @@ export function TourEiffel2000Page({ locale }: Props) {
   const isEnglish = locale === 'en'
   return (
     <article className={styles.page}>
+      <CitableAEO
+        answers={[
+          {
+            question: { fr: 'Combien de photographies compte la collection ?', en: 'How many photographs are in the collection?' },
+            answer: {
+              fr: 'La collection Tour Eiffel 2000 compte 365 photographies réalisées par Jean-Paul Lubliner.',
+              en: 'The Tour Eiffel 2000 collection contains 365 photographs made by Jean-Paul Lubliner.',
+            },
+          },
+          {
+            question: { fr: 'Où l’œuvre a-t-elle été exposée ?', en: 'Where was the work exhibited?' },
+            answer: {
+              fr: 'L’œuvre a été exposée en Chine à la Pearl Tower, à Pékin, sur la muraille de Chine et à Hong Kong.',
+              en: 'The work was exhibited in China at the Pearl Tower, in Beijing, on the Great Wall and in Hong Kong.',
+            },
+          },
+        ]}
+        locale={locale}
+        summary={{
+          fr: 'Tour Eiffel — Un voyage immobile est une œuvre photographique de Jean-Paul Lubliner réalisée entre 1999 et 2000. La collection compte 365 images et a reçu le prix Fuji Awards 2000.',
+          en: 'Tour Eiffel — Un voyage immobile is a photographic work by Jean-Paul Lubliner made between 1999 and 2000. The collection contains 365 images and received the Fuji Awards 2000.',
+        }}
+      />
       <section className={styles.intro} aria-labelledby="tour-eiffel-title">
         <div className={styles.introMeta}>
           <span>{isEnglish ? 'Image creator' : 'Créateur d’images'}</span>
@@ -56,8 +86,8 @@ export function TourEiffel2000Page({ locale }: Props) {
         <div className={styles.titleWrap}>
           <p className={styles.kicker}>Jean-Paul Lubliner</p>
           <h1 id="tour-eiffel-title">
-            Tour Eiffel
-            <em>Un voyage immobile</em>
+            {isEnglish ? 'Eiffel Tower' : 'Tour Eiffel'}
+            <em>{isEnglish ? 'An immobile journey' : 'Un voyage immobile'}</em>
           </h1>
         </div>
 
@@ -71,7 +101,10 @@ export function TourEiffel2000Page({ locale }: Props) {
       </section>
 
       <section className={styles.cubeSection} aria-label={isEnglish ? 'Photographs from the Eiffel Tower collection' : 'Photographies de la collection Tour Eiffel'}>
-        <InteractiveCube images={images} />
+        <InteractiveCube
+          images={images.map((image) => ({ ...image, alt: isEnglish ? image.altEn : image.altFr }))}
+          locale={locale}
+        />
       </section>
 
       <section className={styles.story} id="collection" aria-labelledby="collection-title">
@@ -98,7 +131,6 @@ export function TourEiffel2000Page({ locale }: Props) {
             target="_blank"
           >
             <span>{isEnglish ? 'Discover the Tour Eiffel 2000 collection' : 'Découvrir la collection Tour Eiffel 2000'}</span>
-            <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </section>

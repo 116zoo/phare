@@ -337,7 +337,7 @@ export const seed = async ({
         locale: locale as 'en' | 'fr',
         data: translateSeedDoc(
           {
-            brandName: 'Payload Website',
+            brandName: 'Lubliner ART',
             theme: {
               primaryColor: 'oklch(20.5% 0 0deg)',
               primaryForeground: 'oklch(98.5% 0 0deg)',
@@ -347,7 +347,8 @@ export const seed = async ({
             },
             seo: {
               titleTemplate: '%s | {site}',
-              defaultDescription: 'An open-source website built with Payload and Next.js.',
+              defaultDescription:
+                'Lubliner ART, le studio de Jean-Paul Lubliner à Paris : architecture, images, radio, publications et projets artistiques.',
             },
           },
           locale,
