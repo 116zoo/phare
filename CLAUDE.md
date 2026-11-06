@@ -103,8 +103,6 @@ produit, bandeau CTA), et `style: 'saas'` sur les globals Header / Footer
 - Contenu de démo FR/EN : `node --import=tsx/esm src/scripts/seed-platform-demo.ts`
   (`--publish`, `--globals` pour basculer header/footer). Écrit dans la base de
   `POSTGRES_URL` → à lancer sur une base locale.
-- Dérive connue : le snapshot de migrations a `_locales = en,de,fr,es` alors que
-  la config n'a plus que `fr,en`. `migrate:create` propose donc de recréer
-  l'enum ; la migration Plateforme a été générée avec les 4 locales pour ne pas
-  embarquer ce changement. En local, `PAYLOAD_MIGRATING=true` évite que le push
-  de schéma du mode dev échoue sur cette dérive.
+- Locales : la migration `locales_fr_en` aligne les enums de locale sur `fr,en`.
+  Elle refuse de s'appliquer (sans rien modifier) tant qu'il reste des lignes
+  `de`/`es`, et supprime les anciens `DEFAULT 'en'` sur les colonnes `_locale`.

@@ -1,10 +1,10 @@
 import { test, expect, Page } from '@playwright/test'
 
-const locales = ['en', 'fr', 'de', 'es'] as const
+const locales = ['fr', 'en'] as const
 
-/** `/en` is served unprefixed, every other locale gets a prefix. */
+/** French (the default locale) is served unprefixed, English gets a `/en` prefix. */
 const path = (locale: string, rest = '') => {
-  const prefix = locale === 'en' ? '' : `/${locale}`
+  const prefix = locale === 'fr' ? '' : `/${locale}`
   return `http://localhost:3000${prefix}${rest}`
 }
 
@@ -17,12 +17,11 @@ test.describe('Frontend', () => {
   })
 
   test('can load homepage', async ({ page }) => {
-    await page.goto(path('en'))
+    await page.goto(path('fr'))
     // The title carries the brand name of the `site-settings` global, which
-    // defaults to "Payload Website" and is editable from the admin panel.
-    await expect(page).toHaveTitle(/Payload Website/)
-    const heading = page.locator('h1').first()
-    await expect(heading).toHaveText('Payload Website Template')
+    // defaults to "Lubliner ART" and is editable from the admin panel.
+    await expect(page).toHaveTitle(/Lubliner ART/)
+    await expect(page.locator('h1').first()).toBeVisible()
   })
 
   test.describe('locale routing', () => {
@@ -35,18 +34,18 @@ test.describe('Frontend', () => {
     })
 
     test('redirects the prefixed default locale to its canonical form', async ({ page }) => {
-      await page.goto('http://localhost:3000/en/posts')
+      await page.goto('http://localhost:3000/fr/posts')
 
-      await expect(page).toHaveURL(/\/posts$/)
+      await expect(page).toHaveURL('http://localhost:3000/posts')
     })
 
     test('does not leak one locale prefix into another', async ({ page }) => {
-      await page.goto(path('fr', '/posts'))
+      await page.goto(path('en', '/posts'))
 
-      // Internal links must keep the French prefix.
-      const firstPostLink = page.locator('a[href*="/fr/posts/"]').first()
+      // Internal links must keep the English prefix.
+      const firstPostLink = page.locator('a[href*="/posts/"]').first()
       if (await firstPostLink.count()) {
-        await expect(firstPostLink).toHaveAttribute('href', /\/fr\/posts\//)
+        await expect(firstPostLink).toHaveAttribute('href', /^\/en\/posts\//)
       }
     })
   })
@@ -55,10 +54,8 @@ test.describe('Frontend', () => {
     // The skip link was hardcoded to French, which leaked into every locale.
     test('renders a translated skip link on every locale', async ({ page }) => {
       const expected: Record<string, string> = {
-        en: 'Skip to main content',
         fr: 'Aller au contenu principal',
-        de: 'Zum Hauptinhalt springen',
-        es: 'Saltar al contenido principal',
+        en: 'Skip to main content',
       }
 
       for (const locale of locales) {
@@ -71,10 +68,8 @@ test.describe('Frontend', () => {
 
     test('renders a translated navigation landmark label', async ({ page }) => {
       const expected: Record<string, string> = {
-        en: 'Main navigation',
         fr: 'Navigation principale',
-        de: 'Hauptnavigation',
-        es: 'Navegación principal',
+        en: 'Main navigation',
       }
 
       for (const locale of locales) {
@@ -89,10 +84,8 @@ test.describe('Frontend', () => {
 
     test('translates the posts list heading', async ({ page }) => {
       const expected: Record<string, string> = {
-        en: 'Posts',
         fr: 'Articles',
-        de: 'Beiträge',
-        es: 'Artículos',
+        en: 'Posts',
       }
 
       for (const locale of locales) {
@@ -104,38 +97,37 @@ test.describe('Frontend', () => {
   })
 
   test.describe('accessibility statement', () => {
-    // /de/accessibilite used to render `undefined` everywhere: the inline
-    // per-locale maps only had en/es/fr keys.
-    test('renders fully in German instead of blank', async ({ page }) => {
-      await page.goto(path('de', '/accessibilite'))
+    // Inline per-locale maps once rendered `undefined` for a missing locale.
+    test('never renders an undefined label', async ({ page }) => {
+      for (const locale of locales) {
+        await page.goto(path(locale, '/accessibilite'))
 
-      await expect(page.locator('h1').first()).toHaveText('Erklärung zur Barrierefreiheit')
-      await expect(page.locator('body')).not.toContainText('undefined')
+        await expect(page.locator('body'), `${locale} body`).not.toContainText('undefined')
+      }
     })
 
     test('renders the localized heading in every locale', async ({ page }) => {
       const expected: Record<string, string> = {
-        en: 'Accessibility Statement',
         fr: "Déclaration d'accessibilité",
-        de: 'Erklärung zur Barrierefreiheit',
-        es: 'Declaración de accesibilidad',
+        en: 'Accessibility Statement',
       }
 
       for (const locale of locales) {
         await page.goto(path(locale, '/accessibilite'))
 
-        await expect(
-          page.locator('h1').first(),
-          `${locale} accessibility heading`,
-        ).toHaveText(expected[locale])
+        await expect(page.locator('h1').first(), `${locale} accessibility heading`).toHaveText(
+          expected[locale],
+        )
       }
     })
   })
 
   test.describe('structured data', () => {
     // The four JSON-LD components were never imported, so no page emitted any.
-    test('emits Article, FAQPage and BreadcrumbList on a post', async ({ page }) => {
-      await page.goto(path('fr', '/posts/digital-horizons'))
+    // FAQPage is deliberately not emitted (restricted for commercial sites, see
+    // src/blocks/AEO): the answer summary is exposed as SpeakableSpecification.
+    test('emits Article, SpeakableSpecification and BreadcrumbList on a post', async ({ page }) => {
+      await page.goto(path('en', '/posts/digital-horizons'))
 
       const types = await page.evaluate(() =>
         Array.from(document.querySelectorAll('script[type="application/ld+json"]')).flatMap(
@@ -152,7 +144,7 @@ test.describe('Frontend', () => {
       )
 
       expect(types, `emitted: ${types.join(', ')}`).toContain('Article')
-      expect(types).toContain('FAQPage')
+      expect(types).toContain('SpeakableSpecification')
       expect(types).toContain('BreadcrumbList')
     })
 
