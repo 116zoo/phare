@@ -2,18 +2,21 @@ import assert from 'node:assert/strict'
 
 /**
  * Minimal JSON-LD assertions for schema types the `sdtt` presets do not cover
- * (FAQPage, BreadcrumbList, WebPage). `pnpm schema:validate` pairs this with
+ * (SpeakableSpecification, BreadcrumbList, WebPage). `pnpm schema:validate` pairs this with
  * `sdtt --presets Article` for the richer Article checks.
  */
 /** @type {{ url: string; types: string[] }[]} */
 
 const checks = [
   {
-    url: 'http://127.0.0.1:3000/fr/posts/digital-horizons',
-    types: ['Article', 'FAQPage', 'BreadcrumbList'],
+    // French is the default locale, served unprefixed. FAQPage is deliberately not
+    // emitted (restricted for commercial sites, see src/blocks/AEO): the answer
+    // summary is exposed as SpeakableSpecification instead.
+    url: 'http://127.0.0.1:3000/posts/digital-horizons',
+    types: ['Article', 'SpeakableSpecification', 'BreadcrumbList'],
   },
   {
-    url: 'http://127.0.0.1:3000/fr/accessibilite',
+    url: 'http://127.0.0.1:3000/accessibilite',
     types: ['WebPage'],
   },
 ]

@@ -213,7 +213,7 @@ jobs:
         if: failure()
         run: cat dev-server.log
 
-      # Article / FAQPage / BreadcrumbList live on a post, not on the home page.
+      # Article / SpeakableSpecification / BreadcrumbList live on a post, not on the home page.
       # `sdtt` fetches with Node's resolver, so use 127.0.0.1 — `localhost`
       # resolves to ::1 first and the extractor sees an empty document.
       - name: Seed content for schema validation
