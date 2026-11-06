@@ -64,6 +64,7 @@ export async function getDictionary(locale: Locale) {
       skipToContent: t('a11y.skipToContent'),
       mainNavigation: t('a11y.mainNavigation'),
       footerNavigation: t('a11y.footerNavigation'),
+      socialLinks: t('a11y.socialLinks'),
       newWindow: t('a11y.newWindow'),
       breadcrumb: t('a11y.breadcrumb'),
       close: t('a11y.close'),

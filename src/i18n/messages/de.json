@@ -67,7 +67,10 @@
     "captionsLabel": "Untertitel",
     "showTranscript": "Transkript anzeigen",
     "audioDescription": "Audiodeskription verfügbar:",
-    "download": "Herunterladen"
+    "download": "Herunterladen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "socialLinks": "Soziale Netzwerke"
   },
   "accessibility": {
     "metaTitle": "Erklärung zur Barrierefreiheit",

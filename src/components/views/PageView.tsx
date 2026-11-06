@@ -45,7 +45,7 @@ export const PageView: React.FC<Props> = async ({ draft = false, locale, page, s
   const canonicalUrl = `${serverUrl}${url}`
 
   return (
-    <article className="pt-16 pb-24">
+    <article className={hero?.type === 'saas' ? 'pb-0' : 'pt-16 pb-24'}>
       {slug !== 'home' && (
         <BreadcrumbMarkup items={[{ name: page.title || slug, item: canonicalUrl }]} />
       )}
@@ -58,8 +58,8 @@ export const PageView: React.FC<Props> = async ({ draft = false, locale, page, s
 
       <AEOSection aeo={page.aeo} />
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderHero {...hero} locale={locale} />
+      <RenderBlocks blocks={layout} locale={locale} />
 
       <AccessibilityNotice locale={locale} statement={accessibilityStatement} />
     </article>

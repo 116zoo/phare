@@ -60,6 +60,15 @@ export const hero: Field = {
           },
           value: 'lowImpact',
         },
+        {
+          label: {
+            en: 'Platform (SaaS landing)',
+            de: 'Plattform (SaaS-Landingpage)',
+            es: 'Plataforma (landing SaaS)',
+            fr: 'Plateforme (landing SaaS)',
+          },
+          value: 'saas',
+        },
       ],
       required: true,
       localized: true,
@@ -80,11 +89,59 @@ export const hero: Field = {
       label: false,
       localized: true,
     },
+    {
+      name: 'badge',
+      type: 'group',
+      admin: {
+        condition: (_, { type } = {}) => type === 'saas',
+      },
+      label: { en: 'Badge above the title', fr: 'Badge au-dessus du titre' },
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              localized: true,
+              label: { en: 'Text', fr: 'Texte' },
+            },
+            {
+              name: 'url',
+              type: 'text',
+              label: { en: 'URL (optional)', fr: 'URL (optionnelle)' },
+            },
+          ],
+        },
+      ],
+    },
     linkGroup({
       overrides: {
         maxRows: 2,
       },
     }),
+    {
+      name: 'note',
+      type: 'text',
+      localized: true,
+      admin: {
+        condition: (_, { type } = {}) => type === 'saas',
+      },
+      label: { en: 'Small note under the buttons', fr: 'Mention sous les boutons' },
+    },
+    {
+      name: 'backgroundMedia',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        condition: (_, { type } = {}) => type === 'saas',
+        description: {
+          en: 'Optional image or video shown behind the hero, toned down for legibility.',
+          fr: 'Image ou vidéo optionnelle derrière le héro, atténuée pour rester lisible.',
+        },
+      },
+      label: { en: 'Background media', fr: 'Média de fond' },
+    },
     {
       name: 'media',
       type: 'upload',

@@ -14,6 +14,7 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { ModalBlock } from '../../blocks/ModalBlock/config'
 import { Tabs } from '../../blocks/Tabs/config'
 import { Video } from '../../blocks/Video/config'
+import { saasBlocks } from '../../blocks/Saas/configs'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -120,6 +121,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ModalBlock,
                 Tabs,
                 Video,
+                ...saasBlocks,
               ],
               required: true,
               localized: true,

@@ -247,6 +247,12 @@
       "skillPath": "plugins/small-business-fr/skills/pay-the-bills/SKILL.md",
       "computedHash": "bb4ef7e9f44bc50c3394886544691a2c154e2c3c7eff75d729a38932d8441840"
     },
+    "payload": {
+      "source": "payloadcms/payload",
+      "sourceType": "github",
+      "skillPath": "packages/payload/skills/payload/SKILL.md",
+      "computedHash": "6fa5e80544fe9580e26d3f4d5930833e5d74a230c122dcc05a9779e01d13e15e"
+    },
     "payroll-prep": {
       "source": "jamon8888/small-business-fr",
       "sourceType": "github",
