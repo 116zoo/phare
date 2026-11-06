@@ -67,7 +67,10 @@
     "captionsLabel": "Subtítulos",
     "showTranscript": "Mostrar la transcripción",
     "audioDescription": "Audiodescripción disponible:",
-    "download": "Descargar"
+    "download": "Descargar",
+    "openMenu": "Abrir el menú",
+    "closeMenu": "Cerrar el menú",
+    "socialLinks": "Redes sociales"
   },
   "accessibility": {
     "metaTitle": "Declaración de accesibilidad",

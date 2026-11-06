@@ -6,11 +6,13 @@ import { Locale } from '@/i18n/config'
 import { HighImpactHero } from '@/heros/HighImpact'
 import { LowImpactHero } from '@/heros/LowImpact'
 import { MediumImpactHero } from '@/heros/MediumImpact'
+import { SaasHero } from '@/heros/Saas'
 
 const heroes = {
   highImpact: HighImpactHero,
   lowImpact: LowImpactHero,
   mediumImpact: MediumImpactHero,
+  saas: SaasHero,
 }
 
 export const RenderHero: React.FC<Page['hero'] & { locale?: Locale }> = (props) => {

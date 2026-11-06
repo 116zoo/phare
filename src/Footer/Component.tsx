@@ -8,6 +8,8 @@ import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { localizedHref } from '@/i18n/path'
 import styles from './Footer.module.css'
+import { SaasFooter } from './SaasFooter'
+import { getSiteSettings } from '@/utilities/getSiteSettings'
 
 interface FooterProps {
   locale?: Locale
@@ -18,7 +20,7 @@ const englishFooterLabels: Record<string, string> = {
   Présentation: 'Presentation',
   'Un homme de radio': 'A man of radio',
   'Créateur d’images': 'Image creator',
-  'Créateur d\'images': 'Image creator',
+  "Créateur d'images": 'Image creator',
   'Créateur de publications': 'Publication creator',
   'Les projets artistiques': 'Art projects',
   'Un architecte avant-garde': 'An avant-garde architect',
@@ -43,7 +45,11 @@ const englishFooterLabels: Record<string, string> = {
   Recherche: 'Search',
 }
 
-const getFooterLabel = (label: string | null | undefined, url: string | null | undefined, isEnglish: boolean) => {
+const getFooterLabel = (
+  label: string | null | undefined,
+  url: string | null | undefined,
+  isEnglish: boolean,
+) => {
   if (!isEnglish || !label) return label
 
   const pathLabel = url?.replace(/^\//, '').split('/')[0]
@@ -78,6 +84,19 @@ export async function Footer({ locale = 'en' }: FooterProps) {
   const navItems = footerData?.navItems || []
   const { a11y, footer } = await getDictionary(locale)
   const isEnglish = locale === 'en'
+
+  if (footerData?.style === 'saas') {
+    const settings = await getSiteSettings(locale)
+
+    return (
+      <SaasFooter
+        brandName={settings.brandName}
+        data={footerData}
+        labels={{ footerNavigation: a11y.footerNavigation, socialLinks: a11y.socialLinks }}
+        locale={locale}
+      />
+    )
+  }
   const hasFooterPath = (path: string) =>
     navItems.some(({ link }) => link?.url?.replace(/\/$/, '') === `/${path}`)
 
@@ -86,7 +105,11 @@ export async function Footer({ locale = 'en' }: FooterProps) {
       <div className={styles.inner}>
         <div className={styles.brandCol}>
           <Link className={styles.brandLink} href={localizedHref(locale)}>
-            <Logo className="h-[132px]" descriptionClassName={styles.brandDescription} locale={locale} />
+            <Logo
+              className="h-[132px]"
+              descriptionClassName={styles.brandDescription}
+              locale={locale}
+            />
           </Link>
         </div>
 
@@ -136,7 +159,11 @@ export async function Footer({ locale = 'en' }: FooterProps) {
             <br />
             75018 Paris · France
           </p>
-          <p>{isEnglish ? 'Jean-Paul Lubliner, art designer.' : 'Jean-Paul Lubliner, art concepteur.'}</p>
+          <p>
+            {isEnglish
+              ? 'Jean-Paul Lubliner, art designer.'
+              : 'Jean-Paul Lubliner, art concepteur.'}
+          </p>
           <Link className={styles.contactLink} href={localizedHref(locale, 'contact')}>
             {isEnglish ? 'Start a conversation' : 'Commencer une conversation'}
           </Link>
@@ -185,7 +212,9 @@ export async function Footer({ locale = 'en' }: FooterProps) {
         </div>
       </div>
       <div className={styles.bottom}>
-        <span>© {new Date().getFullYear()} {footer.rights}</span>
+        <span>
+          © {new Date().getFullYear()} {footer.rights}
+        </span>
         <span>Lubliner ART · Paris</span>
       </div>
     </footer>

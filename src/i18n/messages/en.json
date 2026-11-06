@@ -68,7 +68,10 @@
     "captionsLabel": "Captions",
     "showTranscript": "Show transcript",
     "audioDescription": "Audio description available:",
-    "download": "Download"
+    "download": "Download",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "socialLinks": "Social media"
   },
   "accessibility": {
     "metaTitle": "Accessibility Statement",

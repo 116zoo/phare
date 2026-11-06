@@ -15,6 +15,8 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ModalBlock } from '@/blocks/ModalBlock/Component'
 import { TabsBlock } from '@/blocks/Tabs/Component'
 import { VideoBlock } from '@/blocks/Video/Component'
+import { saasBlockComponents } from '@/blocks/Saas/Components'
+import { saasBlockSlugs } from '@/blocks/Saas/configs'
 
 const blockComponents = {
   accordion: AccordionBlock,
@@ -29,6 +31,7 @@ const blockComponents = {
   modal: ModalBlock,
   tabs: TabsBlock,
   video: VideoBlock,
+  ...saasBlockComponents,
 }
 
 export const RenderBlocks: React.FC<{
@@ -49,6 +52,16 @@ export const RenderBlocks: React.FC<{
             const Block = blockComponents[blockType]
 
             if (Block) {
+              // The Platform blocks draw their own full-width section and spacing.
+              if (saasBlockSlugs.includes(blockType)) {
+                return (
+                  <Fragment key={index}>
+                    {/* @ts-expect-error there may be some mismatch between the expected types here */}
+                    <Block {...block} locale={locale} />
+                  </Fragment>
+                )
+              }
+
               return (
                 <div className="my-16" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}

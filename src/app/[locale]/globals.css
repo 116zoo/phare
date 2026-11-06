@@ -230,3 +230,33 @@
    dropping the imperative `data-theme` attribute, so the whole page stayed at
    `opacity: 0` (blank) until a hard reload. The theme script already applies
    the theme pre-paint, so the gate was unnecessary. */
+
+/* Platform (SaaS) style: infinite scrolling tag rows. */
+@keyframes saas-marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.saas-marquee-track {
+  animation: saas-marquee 40s linear infinite;
+}
+
+.saas-marquee:hover .saas-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saas-marquee-track {
+    animation: none;
+  }
+
+  .saas-marquee {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .saas-marquee-track[aria-hidden='true'] {
+    display: none;
+  }
+}

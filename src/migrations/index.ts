@@ -4,6 +4,8 @@ import * as migration_20261006_163512_localize_link_labels from './20261006_1635
 import * as migration_20261020_180247_accessibility_statements_and_localized_search from './20261020_180247_accessibility_statements_and_localized_search';
 import * as migration_20261021_135206_site_settings_customizer from './20261021_135206_site_settings_customizer';
 import * as migration_20261021_143222_mcp_api_keys from './20261021_143222_mcp_api_keys';
+import * as migration_20261106_152057_platform_saas_design from './20261106_152057_platform_saas_design';
+import * as migration_20261106_153607_locales_fr_en from './20261106_153607_locales_fr_en';
 
 export const migrations = [
   {
@@ -34,6 +36,16 @@ export const migrations = [
   {
     up: migration_20261021_143222_mcp_api_keys.up,
     down: migration_20261021_143222_mcp_api_keys.down,
-    name: '20261021_143222_mcp_api_keys'
+    name: '20261021_143222_mcp_api_keys',
+  },
+  {
+    up: migration_20261106_152057_platform_saas_design.up,
+    down: migration_20261106_152057_platform_saas_design.down,
+    name: '20261106_152057_platform_saas_design',
+  },
+  {
+    up: migration_20261106_153607_locales_fr_en.up,
+    down: migration_20261106_153607_locales_fr_en.down,
+    name: '20261106_153607_locales_fr_en'
   },
 ];

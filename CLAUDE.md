@@ -91,3 +91,18 @@ collection de clés API).
   terminal de l'utilisateur).
 - Ne jamais éditer `src/payload-types.ts` ni
   `src/app/(payload)/admin/importMap.js` à la main.
+
+## Design « Plateforme » (style landing SaaS)
+
+Variante optionnelle, inspirée de la structure des sites SaaS (Papermark) :
+hero `saas`, 8 blocs dans `src/blocks/Saas/` (bandeau de confiance, chiffres
+clés, bandeau défilant, témoignages, histoires, grille d'engagements, vitrine
+produit, bandeau CTA), et `style: 'saas'` sur les globals Header / Footer
+(`classic` par défaut = site Lubliner inchangé).
+
+- Contenu de démo FR/EN : `node --import=tsx/esm src/scripts/seed-platform-demo.ts`
+  (`--publish`, `--globals` pour basculer header/footer). Écrit dans la base de
+  `POSTGRES_URL` → à lancer sur une base locale.
+- Locales : la migration `locales_fr_en` aligne les enums de locale sur `fr,en`.
+  Elle refuse de s'appliquer (sans rien modifier) tant qu'il reste des lignes
+  `de`/`es`, et supprime les anciens `DEFAULT 'en'` sur les colonnes `_locale`.
